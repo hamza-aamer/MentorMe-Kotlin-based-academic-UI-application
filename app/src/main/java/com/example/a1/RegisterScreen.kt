@@ -1,15 +1,22 @@
 package com.example.a1
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.Spinner;
+import android.widget.TextView
 import android.widget.Toast;
 
 
 class RegisterScreen : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_screen)
@@ -41,5 +48,22 @@ class RegisterScreen : AppCompatActivity() {
             // Apply the adapter to the spinner.
             spinner2.adapter = adapter
         }
+
+
+        val btn : ImageButton = findViewById(R.id.signupbtn)
+        btn.setOnClickListener{
+            val intent = Intent(this, TwoFactorScreen::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        val btn2 : TextView = findViewById(R.id.loginredirect)
+        btn2.setOnClickListener{
+            val intent = Intent(this, LoginScreen::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
     }
 }

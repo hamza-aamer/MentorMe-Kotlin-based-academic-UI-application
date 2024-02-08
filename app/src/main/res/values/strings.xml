@@ -6,6 +6,10 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="Weve_sent_a_code_to">We’ve sent a code to <font color='#157177'>+92 321 2242022</font></string>
+    <string name="sendcodeagain">Send code again <font color='#157177'>00:20</font></string>
+    <string name="alreadyhaveaccount">Already have account? <font color='#003c41'><u>Log in</u></font></string>
+    <string name="donthaveaccount">Don’t have an account? <font color='#003c41'><u>Sign Up</u></font></string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

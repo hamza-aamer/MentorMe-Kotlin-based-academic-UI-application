@@ -32,9 +32,12 @@
         app:layout_constraintTop_toBottomOf="@id/PasswordNotice"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageButton
+            android:id="@+id/signupbtn"
             android:layout_width="300dp"
             android:layout_height="60dp"
             tools:ignore="MissingConstraints"
@@ -55,9 +58,10 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/loginredirect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have an account ?"
+        android:text="@string/alreadyhaveaccount"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:layout_marginBottom="10dp"

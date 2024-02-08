@@ -58,7 +58,7 @@
         android:id="@+id/RegisterRedirect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dont have an account ?"
+        android:text="@string/donthaveaccount"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:layout_marginBottom="20dp"
