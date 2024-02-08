@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#def8f8"
+    tools:context=".ForgotPassScreen">
+
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/BackArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="←"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textColor="#157177"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="@id/Title1"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/Title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Forgot Password?"
+        android:textColor="#157177"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="80dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/senttitle"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:text="Don’t worry! It happens. Please enter the
+email associated with your account."
+        app:layout_constraintStart_toStartOf="@id/Title1"
+        app:layout_constraintTop_toBottomOf="@id/Title1" />
+
+    <TextView
+        android:id="@+id/EmailTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        app:layout_constraintTop_toBottomOf="@id/senttitle"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="@id/senttitle"
+        />
+    <EditText
+        android:id="@+id/EmailText"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/whiteround"
+        app:layout_constraintTop_toBottomOf="@id/EmailTitle"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="5dp"
+        android:hint="Enter Email"
+        android:paddingHorizontal="20dp"
+        />
+
+    <FrameLayout
+        android:id="@+id/btnframe"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/EmailText"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:paddingTop="50dp"
+        android:focusable="true">
+
+        <ImageButton
+            android:id="@+id/ForgotPassBtn"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/twofactorverifybutton"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/LoginRedirect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnframe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/rememberpass"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:clickable="true"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
