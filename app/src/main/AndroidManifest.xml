@@ -13,6 +13,9 @@
         android:theme="@style/Theme.A1"
         tools:targetApi="31">
         <activity
+            android:name=".ResetPassScreen"
+            android:exported="false" />
+        <activity
             android:name=".ForgotPassScreen"
             android:exported="false" />
         <activity
