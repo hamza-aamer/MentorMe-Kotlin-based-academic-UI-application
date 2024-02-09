@@ -12,6 +12,9 @@
     <string name="donthaveaccount">Don’t have an account? <font color='#003c41'><u>Sign Up</u></font></string>
     <string name="rememberpass">Remember your password? <font color='#157177'><u>Login</u></font></string>
     <string name="cancelresetpass">Don’t want to reset password? <font color='#157177'>Login</font></string>
+
+    <string name="welcomemsg">Hello, <font color='#157177'>Ali</font></string>
+
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

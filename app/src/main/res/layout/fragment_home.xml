@@ -3,16 +3,820 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/empty"
 
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home Fragment"
-        android:gravity="center"
-        android:textSize="50dp"/>
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/welcomemsg"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcomemsg"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:paddingTop="40dp"
+                    android:paddingLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/mentormsg"
+                app:layout_constraintTop_toBottomOf="@id/welcomemsg"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ready for mentorship? Let’s begin the journey!"
+                android:textSize="16dp"
+                android:textColor="#157177"
+                android:paddingTop="5dp"
+                android:paddingLeft="20dp"/>
+
+            <ImageButton
+                android:id="@+id/notifbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/baseline_circle_notifications_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/mentormsg"
+                android:layout_marginRight="20dp"
+                />
+
+            <HorizontalScrollView
+                android:id="@+id/categories"
+                android:layout_width="match_parent"
+                android:scrollbars="none"
+                app:layout_constraintTop_toBottomOf="@id/mentormsg"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:padding="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="All"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:background="@drawable/twofactorverifybutton"/>
+                    <TextView
+                        android:padding="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+
+                        android:text="Education"
+                        android:textColor="#157177"
+                        android:textStyle="bold"
+                            android:background="@drawable/unselectedhorizontalscrollbce1e2"/>
+                    <TextView
+                        android:padding="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+
+                        android:text="Entrepreneurship"
+                        android:textColor="#157177"
+                        android:textStyle="bold"
+                        android:background="@drawable/unselectedhorizontalscrollbce1e2"/>
+                    <TextView
+                        android:padding="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+
+                        android:text="Personal Growth"
+                        android:textColor="#157177"
+                        android:textStyle="bold"
+                        android:background="@drawable/unselectedhorizontalscrollbce1e2"/>
+                    <TextView
+                        android:padding="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+
+                        android:text="Career"
+                        android:textColor="#157177"
+                        android:textStyle="bold"
+                        android:background="@drawable/unselectedhorizontalscrollbce1e2"/>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+
+            <FrameLayout
+                android:id="@+id/topmentorstitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categories">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Top Mentors for you"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#157177"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#157177"
+                    android:textStyle="bold"
+                    android:text="View All"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="20dp"
+                    android:textSize="11dp"/>
+
+            </FrameLayout>
+
+            <HorizontalScrollView
+                    android:id="@+id/topmentors"
+                    app:layout_constraintTop_toBottomOf="@id/topmentorstitle"
+                    android:layout_width="match_parent"
+                    android:scrollbars="none"
+                    android:layout_height="wrap_content"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <FrameLayout
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:backgroundTint="#dadada"
+                                android:src="@drawable/darkgreyround"/>
+
+                            <FrameLayout
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="bottom|center"
+                                android:layout_marginBottom="10dp">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/lightgreyround"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="John Cooper"
+                                    android:textStyle="bold"
+                                    android:textSize="10dp"
+                                    android:padding="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$1500/Session"
+                                    android:textSize="5dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="#ecb800"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:text="UX Designer @ Google"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="● Available"
+                                    android:textColor="#3ead00"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="❤"
+                                    android:layout_gravity="right"
+                                    android:textSize="8dp"
+                                    android:layout_marginRight="10dp"/>
+
+
+                            </FrameLayout>
+
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_margin="10dp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:backgroundTint="#dadada"
+                                android:src="@drawable/darkgreyround"/>
+
+                            <FrameLayout
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="bottom|center"
+                                android:layout_marginBottom="10dp">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/lightgreyround"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Martina Watson"
+                                    android:textStyle="bold"
+                                    android:textSize="10dp"
+                                    android:padding="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$500/Session"
+                                    android:textSize="5dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="#ecb800"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:text="Lead - Technology Officer"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="● Not Available"
+                                    android:textColor="#918c8c"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="🤍"
+                                    android:layout_gravity="right"
+                                    android:textSize="8dp"
+                                    android:layout_marginRight="10dp"/>
+
+
+                            </FrameLayout>
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:backgroundTint="#dadada"
+                                android:src="@drawable/darkgreyround"/>
+
+                            <FrameLayout
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="bottom|center"
+                                android:layout_marginBottom="10dp">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/lightgreyround"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Emma"
+                                    android:textStyle="bold"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$2000/Session"
+                                    android:textSize="5dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="#ecb800"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:text="Lead - Corporate Manager"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="● Not Available"
+                                    android:textColor="#918c8c"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="🤍"
+                                    android:layout_gravity="right"
+                                    android:textSize="8dp"
+                                    android:layout_marginRight="10dp"/>
+
+
+                            </FrameLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+
+            <FrameLayout
+                android:id="@+id/educationmentorstitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/topmentors">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Education Mentors"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#157177"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#157177"
+                    android:textStyle="bold"
+                    android:text="View All"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="20dp"
+                    android:textSize="11dp"/>
+
+            </FrameLayout>
+
+                <HorizontalScrollView
+                    android:id="@+id/educationmentors"
+                    app:layout_constraintTop_toBottomOf="@id/educationmentorstitle"
+                    android:layout_width="match_parent"
+                    android:scrollbars="none"
+                    android:layout_height="wrap_content"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <FrameLayout
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:backgroundTint="#dadada"
+                                android:src="@drawable/darkgreyround"/>
+
+                            <FrameLayout
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="bottom|center"
+                                android:layout_marginBottom="10dp">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/lightgreyround"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Michael Drake"
+                                    android:textStyle="bold"
+                                    android:textSize="10dp"
+                                    android:padding="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$900/Session"
+                                    android:textSize="5dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="#ecb800"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:text="NLP Expert"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="● Available"
+                                    android:textColor="#3ead00"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="❤"
+                                    android:layout_gravity="right"
+                                    android:textSize="8dp"
+                                    android:layout_marginRight="10dp"/>
+
+
+                            </FrameLayout>
+
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_margin="10dp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:backgroundTint="#dadada"
+                                android:src="@drawable/darkgreyround"/>
+
+                            <FrameLayout
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="bottom|center"
+                                android:layout_marginBottom="10dp">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/lightgreyround"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Alex"
+                                    android:textStyle="bold"
+                                    android:textSize="10dp"
+                                    android:padding="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$200/Session"
+                                    android:textSize="5dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="#ecb800"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:text="Android Developer"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="● Not Available"
+                                    android:textColor="#918c8c"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="🤍"
+                                    android:layout_gravity="right"
+                                    android:textSize="8dp"
+                                    android:layout_marginRight="10dp"/>
+
+
+                            </FrameLayout>
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:backgroundTint="#dadada"
+                                android:src="@drawable/darkgreyround"/>
+
+                            <FrameLayout
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="bottom|center"
+                                android:layout_marginBottom="10dp">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/lightgreyround"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Jane"
+                                    android:textStyle="bold"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$600/Session"
+                                    android:textSize="5dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="#ecb800"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:text="Software Engineer"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="● Not Available"
+                                    android:textColor="#918c8c"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="🤍"
+                                    android:layout_gravity="right"
+                                    android:textSize="8dp"
+                                    android:layout_marginRight="10dp"/>
+
+
+                            </FrameLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+
+            <FrameLayout
+                android:id="@+id/recentmentorstitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/educationmentors">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recent Mentors"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#157177"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#157177"
+                    android:textStyle="bold"
+                    android:text="View All"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="20dp"
+                    android:textSize="11dp"/>
+
+            </FrameLayout>
+
+
+                <HorizontalScrollView
+                    android:id="@+id/recentmentors"
+                    app:layout_constraintTop_toBottomOf="@id/recentmentorstitle"
+                    android:layout_width="match_parent"
+                    android:scrollbars="none"
+                    android:layout_height="wrap_content"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <FrameLayout
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:backgroundTint="#dadada"
+                                android:src="@drawable/darkgreyround"/>
+
+                            <FrameLayout
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="bottom|center"
+                                android:layout_marginBottom="10dp">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/lightgreyround"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Michael Drake"
+                                    android:textStyle="bold"
+                                    android:textSize="10dp"
+                                    android:padding="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$900/Session"
+                                    android:textSize="5dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="#ecb800"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:text="NLP Expert"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="● Available"
+                                    android:textColor="#3ead00"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="❤"
+                                    android:layout_gravity="right"
+                                    android:textSize="8dp"
+                                    android:layout_marginRight="10dp"/>
+
+
+                            </FrameLayout>
+
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_margin="10dp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:backgroundTint="#dadada"
+                                android:src="@drawable/darkgreyround"/>
+
+                            <FrameLayout
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="bottom|center"
+                                android:layout_marginBottom="10dp">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/lightgreyround"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Alex"
+                                    android:textStyle="bold"
+                                    android:textSize="10dp"
+                                    android:padding="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$200/Session"
+                                    android:textSize="5dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="#ecb800"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:text="Android Developer"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="● Not Available"
+                                    android:textColor="#918c8c"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="🤍"
+                                    android:layout_gravity="right"
+                                    android:textSize="8dp"
+                                    android:layout_marginRight="10dp"/>
+
+
+                            </FrameLayout>
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_margin="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:backgroundTint="#dadada"
+                                android:src="@drawable/darkgreyround"/>
+
+                            <FrameLayout
+                                android:layout_width="130dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="bottom|center"
+                                android:layout_marginBottom="10dp">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/lightgreyround"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Jane"
+                                    android:textStyle="bold"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$600/Session"
+                                    android:textSize="5dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginTop="10dp"
+                                    android:textColor="#ecb800"
+                                    android:padding="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:text="Software Engineer"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="● Not Available"
+                                    android:textColor="#918c8c"
+                                    android:textSize="8dp"
+                                    android:layout_marginLeft="5dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="40dp"
+                                    android:text="🤍"
+                                    android:layout_gravity="right"
+                                    android:textSize="8dp"
+                                    android:layout_marginRight="10dp"/>
+
+
+                            </FrameLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 
 </FrameLayout>
