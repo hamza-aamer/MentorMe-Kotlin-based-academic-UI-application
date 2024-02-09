@@ -104,7 +104,7 @@ class SearchFragment : Fragment() {
     private fun replacefrag(fragment: Fragment){
         val fragmentManager = getFragmentManager()
         val fragmentTransaction = fragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.SearchFragment, fragment)
+        fragmentTransaction?.replace(R.id.FrameLayout, fragment)
         fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()
 

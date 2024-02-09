@@ -13,10 +13,10 @@
         android:theme="@style/Theme.A1"
         tools:targetApi="31">
         <activity
-            android:name=".BottomNavigationBar"
+            android:name=".NotificationScreen"
             android:exported="false" />
         <activity
-            android:name=".BottomNavigation"
+            android:name=".BottomNavigationBar"
             android:exported="false" />
         <activity
             android:name=".ResetPassScreen"

@@ -212,4 +212,10 @@
         <item>Quetta</item>
         <item>Sialkot</item>
     </string-array>
+    <string-array name="Filters">
+        <item>Filter</item>
+        <item>Top</item>
+        <item>Cheapest</item>
+        <item>Recommended</item>
+    </string-array>
 </resources>
