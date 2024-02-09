@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import com.example.a1.databinding.FragmentSearchBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,7 +24,6 @@ class SearchFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,8 +37,44 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+
+        val img = view.findViewById<ImageView>(R.id.entimg) // Assuming the ID of your button is "entButton"
+        val img2 = view.findViewById<ImageView>(R.id.persimg) // Assuming the ID of your button is "entButton"
+        val img3 = view.findViewById<ImageView>(R.id.eduimg) // Assuming the ID of your button is "entButton"
+
+        val back=view.findViewById<TextView>(R.id.BackArrow)
+
+        back.setOnClickListener {
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.SearchFragment, HomeFragment.newInstance("param1", "param2"))
+            fragmentTransaction.commit()
+
+        }
+
+        img.setOnClickListener {
+            // Navigate to SearchViewResults fragment
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.SearchFragment, SearchResultsFragment.newInstance("param1", "param2"))
+            fragmentTransaction.commit()
+
+        }
+        img2.setOnClickListener {
+            // Navigate to SearchViewResults fragment
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.SearchFragment, SearchResultsFragment.newInstance("param1", "param2"))
+            fragmentTransaction.commit()
+        }
+        img3.setOnClickListener {
+            // Navigate to SearchViewResults fragment
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.SearchFragment, SearchResultsFragment.newInstance("param1", "param2"))
+            fragmentTransaction.commit()
+        }
+
+        return view
     }
+
 
     companion object {
         /**
