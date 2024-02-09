@@ -38,37 +38,17 @@ class SearchResultsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         val view = inflater.inflate(R.layout.fragment_search_results, container, false)
 
-
-        val back=view.findViewById<TextView>(R.id.BackArrow)
+        val back = view.findViewById<TextView>(R.id.BackArrow)
 
         back.setOnClickListener {
-            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.SearchResultFragment, SearchFragment.newInstance("param1", "param2"))
-            fragmentTransaction.commit()
-
+            replacefrag(SearchFragment())
         }
 
-        val spinner: Spinner = view.findViewById<Spinner>(R.id.FilterList)
-
-        // Create an ArrayAdapter using the string array and a default spinner layout.
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.Countries,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears.
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner.
-            spinner.adapter = adapter
-        }
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_results, container, false)
+        return view
     }
+
 
     companion object {
         /**
@@ -88,5 +68,14 @@ class SearchResultsFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+    private fun replacefrag(fragment: Fragment){
+        val fragmentManager = getFragmentManager()
+        val fragmentTransaction = fragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.FrameLayout, fragment)
+        fragmentTransaction?.addToBackStack(null)
+        fragmentTransaction?.commit()
+
+
     }
 }

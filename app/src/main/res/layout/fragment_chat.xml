@@ -4,9 +4,171 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/empty"
+    android:background="#def8f8"
     tools:context=".ChatFragment">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/BackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:clickable="true"
+            android:text="←"
+            android:textColor="#157177"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            android:focusable="true" />
 
+        <TextView
+            android:id="@+id/title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chats"
+            app:layout_constraintTop_toBottomOf="@id/BackArrow"
+            app:layout_constraintStart_toStartOf="@id/BackArrow"
+            android:layout_marginStart="10dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#157177"
+            />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Community"
+            android:textColor="#586363"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"/>
+
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/usericons"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="All Messages"
+            android:textColor="#586363"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/john"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#157177"
+                android:text="John Cooper"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="70dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#a70606"
+                android:textSize="11dp"
+                android:text="1 New Message"
+                android:layout_marginBottom="5dp"
+
+                android:layout_gravity="left|bottom"
+                android:layout_marginLeft="70dp"
+                />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/unselectedhorizontalscrollbce1e2"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/jack"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#157177"
+                android:text="Jack Watson"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="70dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#586363"
+                android:textSize="11dp"
+                android:text="No New Messages"
+                android:layout_gravity="left|bottom"
+                android:layout_marginLeft="70dp"
+                android:layout_marginBottom="5dp"
+                />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/unselectedhorizontalscrollbce1e2"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/emma"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#157177"
+                android:text="Emma Phillips"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="70dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#586363"
+                android:textSize="11dp"
+                android:text="No New Messages"
+                android:layout_gravity="left|bottom"
+                android:layout_marginLeft="70dp"
+                android:layout_marginBottom="5dp"
+
+                />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/unselectedhorizontalscrollbce1e2"/>
+
+    </LinearLayout>
 </FrameLayout>
