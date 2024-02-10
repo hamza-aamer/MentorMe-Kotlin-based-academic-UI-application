@@ -12,6 +12,12 @@ class BottomNavigationBar : AppCompatActivity() {
         binding = ActivityBottomNavigationBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replacefrag(HomeFragment())
+
+
+
+        binding.fab.setOnClickListener { replacefrag(AddMentorFragment()) }
+
+
         var ret: Boolean = true
         binding.bottomNavigationView.setOnItemSelectedListener {
             ret=true
@@ -22,7 +28,6 @@ class BottomNavigationBar : AppCompatActivity() {
                 R.id.chat-> replacefrag(ChatFragment())
                 R.id.profile-> replacefrag(ProfileFragment())
                 R.id.placeholder->  ret=false
-
                 else->{
 
                 }
