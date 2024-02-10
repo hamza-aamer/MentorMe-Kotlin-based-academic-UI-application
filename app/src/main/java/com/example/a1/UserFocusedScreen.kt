@@ -21,7 +21,7 @@ class UserFocusedScreen : AppCompatActivity() {
 
         }
 
-        binding.showBookedSessions.setOnClickListener {
+        binding.addreview.setOnClickListener {
             val intent = Intent(this,AddReviewScreen::class.java)
             startActivity(intent)
             finish()
