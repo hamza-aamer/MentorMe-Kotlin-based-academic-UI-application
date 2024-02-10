@@ -1,5 +1,6 @@
 package com.example.a1
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,11 +48,12 @@ class SearchFragment : Fragment() {
         val back=view.findViewById<TextView>(R.id.BackArrow)
 
         back.setOnClickListener {
-//            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-//            fragmentTransaction.replace(R.id.SearchFragment, HomeFragment.newInstance("param1", "param2"))
-//            fragmentTransaction.commit()
-            replacefrag(HomeFragment())
+            val intent = Intent(activity, BottomNavigationBar::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
+
+
 
         img.setOnClickListener {
             // Navigate to SearchViewResults fragment
