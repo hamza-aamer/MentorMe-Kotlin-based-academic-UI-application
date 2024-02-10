@@ -3,17 +3,623 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/empty"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#def8f8"
 
     tools:context=".ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Profile Fragment"
-        android:gravity="center"
-        android:textSize="50dp"/>
+        android:layout_height="wrap_content">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/BackArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:clickable="true"
+                android:text="←"
+                android:textColor="#157177"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:layout_marginStart="10dp"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#157177"
+                />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/boxes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/middleplaceholder"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <View
+                android:id="@+id/leftmiddleplaceholder"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/middleplaceholder"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <View
+                android:id="@+id/rightmiddleplaceholder"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                app:layout_constraintStart_toStartOf="@id/middleplaceholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <View
+                android:id="@+id/row1box"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/leftmiddleplaceholder"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="#b4ebe5" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="@id/leftmiddleplaceholder"
+                app:layout_constraintEnd_toStartOf="@id/middleplaceholder"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="#81b8b2" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="@id/middleplaceholder"
+                app:layout_constraintEnd_toStartOf="@id/rightmiddleplaceholder"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="#b4ebe5" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="@id/rightmiddleplaceholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="#81b8b2" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/leftmiddleplaceholder"
+                app:layout_constraintTop_toBottomOf="@id/row1box"
+                android:background="#81b8b2" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toEndOf="@id/row1box"
+                app:layout_constraintStart_toStartOf="@id/leftmiddleplaceholder"
+                app:layout_constraintEnd_toStartOf="@id/middleplaceholder"
+                app:layout_constraintTop_toBottomOf="@id/row1box"
+                android:background="#b4ebe5" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="@id/middleplaceholder"
+                app:layout_constraintEnd_toStartOf="@id/rightmiddleplaceholder"
+                app:layout_constraintTop_toBottomOf="@id/row1box"
+                android:background="#81b8b2" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="@id/rightmiddleplaceholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/row1box"
+                android:background="#b4ebe5" />
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:foregroundGravity="right"
+        android:gravity="right"
+        android:text="..."
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:textStyle="bold" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/pfp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/john"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="130dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="40dp"
+            tools:ignore="MissingConstraints,NotSibling" />
+
+        <ImageView
+            android:id="@+id/editpfp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_edit_24"
+            android:background="@drawable/twofactorverifybutton"
+            app:layout_constraintEnd_toEndOf="@id/pfp"
+            app:layout_constraintBottom_toBottomOf="@id/pfp"
+            android:padding="5dp"/>
+        <ImageView
+            android:id="@+id/editbanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_edit_24"
+            android:background="@drawable/twofactorverifybutton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/pfp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ali"
+            android:textColor="#157177"
+            app:layout_constraintTop_toBottomOf="@id/pfp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="@id/pfp"
+            app:layout_constraintEnd_toEndOf="@id/pfp"/>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📍Islamabad"
+            android:textColor="#918c8c"
+            app:layout_constraintTop_toBottomOf="@id/pfp"
+            android:layout_marginTop="35dp"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@id/pfp"
+            app:layout_constraintEnd_toEndOf="@id/pfp"/>
+
+
+        <TextView
+            android:id="@+id/showBookedSessions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Booked Sessions"
+            android:textColor="#157177"
+            android:background="@drawable/yellowroundborder"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="30dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="15dp"/>
+
+
+        <TextView
+            android:id="@+id/favmentorstitle"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/showBookedSessions"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:text="Favorite Mentors"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="20dp"
+            android:textColor="#157177"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+        <HorizontalScrollView
+            android:id="@+id/FavMentors"
+            app:layout_constraintTop_toBottomOf="@id/favmentorstitle"
+            android:layout_width="match_parent"
+            android:scrollbars="none"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:backgroundTint="#dadada"
+                        android:src="@drawable/darkgreyround"/>
+
+                    <FrameLayout
+                        android:layout_width="130dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/lightgreyround"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="John Cooper"
+                            android:textStyle="bold"
+                            android:textSize="10dp"
+                            android:padding="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$1500/Session"
+                            android:textSize="5dp"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#ecb800"
+                            android:padding="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:text="UX Designer @ Google"
+                            android:textSize="8dp"
+                            android:layout_marginLeft="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40dp"
+                            android:text="● Available"
+                            android:textColor="#3ead00"
+                            android:textSize="8dp"
+                            android:layout_marginLeft="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40dp"
+                            android:text="❤"
+                            android:layout_gravity="right"
+                            android:textSize="8dp"
+                            android:layout_marginRight="10dp"/>
+
+
+                    </FrameLayout>
+
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_margin="10dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:backgroundTint="#dadada"
+                        android:src="@drawable/darkgreyround"/>
+
+                    <FrameLayout
+                        android:layout_width="130dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/lightgreyround"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Martina Watson"
+                            android:textStyle="bold"
+                            android:textSize="10dp"
+                            android:padding="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$500/Session"
+                            android:textSize="5dp"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#ecb800"
+                            android:padding="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:text="Lead - Technology Officer"
+                            android:textSize="8dp"
+                            android:layout_marginLeft="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40dp"
+                            android:text="● Not Available"
+                            android:textColor="#918c8c"
+                            android:textSize="8dp"
+                            android:layout_marginLeft="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40dp"
+                            android:text="❤"
+                            android:layout_gravity="right"
+                            android:textSize="8dp"
+                            android:layout_marginRight="10dp"/>
+
+
+                    </FrameLayout>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:backgroundTint="#dadada"
+                        android:src="@drawable/darkgreyround"/>
+
+                    <FrameLayout
+                        android:layout_width="130dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/lightgreyround"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Emma"
+                            android:textStyle="bold"
+                            android:padding="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$2000/Session"
+                            android:textSize="5dp"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#ecb800"
+                            android:padding="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:text="Lead - Corporate Manager"
+                            android:textSize="8dp"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40dp"
+                            android:text="● Not Available"
+                            android:textColor="#918c8c"
+                            android:textSize="8dp"
+                            android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40dp"
+                            android:text="❤"
+                            android:layout_gravity="right"
+                            android:textSize="8dp"
+                            android:layout_marginRight="10dp"/>
+
+
+                    </FrameLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+        <TextView
+            android:id="@+id/MyReviews"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/FavMentors"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:text="My Reviews"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="20dp"
+            android:textColor="#157177"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+
+        <HorizontalScrollView
+            android:id="@+id/Reviews"
+            app:layout_constraintTop_toBottomOf="@id/MyReviews"
+            android:layout_width="match_parent"
+            android:scrollbars="none"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:backgroundTint="#dadada"
+                        android:src="@drawable/rounded_corner"/>
+
+
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="John Cooper"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center|top"
+                            android:textColor="@color/white"
+                            android:textSize="10dp"
+                            android:padding="10dp"/>
+
+                        <TextView
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="55dp"
+                            android:text="John provided excellent Prototyping Techniques and insights. I highly recommend him!"
+                            android:textSize="8dp"
+                            android:layout_marginLeft="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40dp"
+                            android:text="⭐⭐⭐⭐⭐"
+                            android:layout_gravity="center|top"
+                            android:textSize="8dp"/>
+
+
+
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_margin="10dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:backgroundTint="#dadada"
+                        android:src="@drawable/rounded_corner"/>
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="emma Phillips"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center|top"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:padding="10dp"/>
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="55dp"
+                        android:text="Her tips were valuable. Would love to connect again. "
+                        android:textSize="8dp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:text="⭐⭐⭐⭐"
+                        android:layout_gravity="center|top"
+                        android:textSize="8dp"/>
+
+
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:backgroundTint="#dadada"
+                        android:src="@drawable/rounded_corner"/>
+
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jane"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center|top"
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:padding="10dp"/>
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="55dp"
+                        android:text="Impressive session!"
+                        android:textSize="8dp"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:text="⭐⭐⭐"
+                        android:layout_gravity="center|top"
+                        android:textSize="8dp"/>
+
+
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </FrameLayout>
