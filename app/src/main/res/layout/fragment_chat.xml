@@ -54,11 +54,16 @@
             android:layout_marginLeft="30dp"/>
 
         <ImageView
+            android:id="@+id/statuses"
+            android:clickable="true"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:background="@drawable/usericons"/>
+
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,12 +1,10 @@
 package com.example.a1
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
@@ -16,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ChatFragment.newInstance] factory method to
+ * Use the [CommunityChatFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ChatFragment : Fragment() {
+class CommunityChatFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -36,37 +34,20 @@ class ChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view= inflater.inflate(R.layout.fragment_chat, container, false)
-
-
-
-        val openchat=view.findViewById<ImageView>(R.id.OpenChat)
-        val opencommunity=view.findViewById<ImageView>(R.id.statuses)
+        val view= inflater.inflate(R.layout.fragment_community_chat, container, false)
 
         val back=view.findViewById<TextView>(R.id.BackArrow)
 
-        opencommunity.setOnClickListener {
-            val fragmentManager = getFragmentManager()
-            val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.FrameLayout, CommunityChatFragment())
-            fragmentTransaction?.addToBackStack(null)
-            fragmentTransaction?.commit()
-
-        }
-
-        openchat.setOnClickListener{
-            val fragmentManager = getFragmentManager()
-            val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.FrameLayout, OpenedChatFragment())
-            fragmentTransaction?.addToBackStack(null)
-            fragmentTransaction?.commit()
-        }
 
         back.setOnClickListener {
-            val intent = Intent(activity, BottomNavigationBar::class.java)
-            startActivity(intent)
-            activity?.finish()
+            val fragmentManager = getFragmentManager()
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.FrameLayout, ChatFragment())
+            fragmentTransaction?.addToBackStack(null)
+            fragmentTransaction?.commit()
         }
+
+
         return view
     }
 
@@ -77,12 +58,12 @@ class ChatFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ChatFragment.
+         * @return A new instance of fragment CommunityChatFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ChatFragment().apply {
+            CommunityChatFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
