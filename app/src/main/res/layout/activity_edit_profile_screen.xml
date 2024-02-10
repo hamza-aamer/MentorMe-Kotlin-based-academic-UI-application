@@ -1,96 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/empty"
-    tools:context=".LoginScreen">
+    android:background="#def8f8"
+    tools:context=".EditProfileScreen">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 
     <View
-        android:id="@+id/roundcorners"
+        android:id="@+id/view"
         android:layout_width="wrap_content"
-        android:layout_height="650dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/rounded_corner"
-        tools:ignore="MissingConstraints" />
-
-    <FrameLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@id/PasswordNotice"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="170dp"
+        android:background="#50c2c9"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:focusable="true">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/signupbtn"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            tools:ignore="MissingConstraints"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/whiteround"
-            />
+
         <TextView
+            android:id="@+id/BackArrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:textColor="#50c2c9"
-            android:layout_gravity="center"
-            android:textSize="30sp"
+            android:layout_marginStart="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="←"
+            android:textColor="#157177"
+            android:textSize="50sp"
             android:textStyle="bold"
-            />
-
-    </FrameLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/loginredirect"
+        android:id="@+id/title1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/alreadyhaveaccount"
+        android:text="Edit Profile"
         android:textColor="@color/white"
-        android:textSize="15sp"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:focusable="true" />
-    <TextView
-        android:id="@+id/RegisterTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get Started!"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/BackArrow"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/pic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/john"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        app:layout_constraintBottom_toBottomOf="@id/view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/roundcorners"
-        android:layout_marginLeft="30dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
         android:id="@+id/NameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
         android:textSize="20dp"
-        android:textColor="@color/white"
+        android:textColor="#157177"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/RegisterTitle"
+        app:layout_constraintTop_toBottomOf="@id/pic"
         android:layout_marginLeft="30dp"
         tools:ignore="MissingConstraints" />
     <EditText
@@ -104,7 +77,7 @@
         android:layout_marginTop="5dp"
         android:textSize="20dp"
         android:paddingHorizontal="10dp"
-        android:hint="Enter Name"
+        android:hint="Ali"
         android:layout_marginHorizontal="30dp"
         />
 
@@ -114,7 +87,7 @@
         android:layout_height="wrap_content"
         android:text="Email"
         android:textSize="20dp"
-        android:textColor="@color/white"
+        android:textColor="#157177"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NameText"
         android:layout_marginLeft="30dp"
@@ -128,7 +101,7 @@
         android:background="@drawable/whiteround"
         android:textSize="20dp"
         android:paddingHorizontal="10dp"
-        android:hint="Enter Email"
+        android:hint="ali@gmail.com"
         app:layout_constraintTop_toBottomOf="@id/EmailTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -142,7 +115,7 @@
         android:layout_height="wrap_content"
         android:text="Contact Number"
         android:textSize="20dp"
-        android:textColor="@color/white"
+        android:textColor="#157177"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EmailText"
         android:layout_marginLeft="30dp"
@@ -156,7 +129,7 @@
         android:background="@drawable/whiteround"
         android:textSize="20dp"
         android:paddingHorizontal="10dp"
-        android:hint="Enter Contact Number"
+        android:hint="+92 321 2242022"
         app:layout_constraintTop_toBottomOf="@id/NumberTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -170,7 +143,7 @@
         android:layout_height="wrap_content"
         android:text="Country"
         android:textSize="20dp"
-        android:textColor="@color/white"
+        android:textColor="#157177"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NumberText"
         android:layout_marginLeft="30dp"
@@ -197,7 +170,7 @@
         android:layout_height="wrap_content"
         android:text="City"
         android:textSize="20dp"
-        android:textColor="@color/white"
+        android:textColor="#157177"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CountryList"
         android:layout_marginLeft="30dp"
@@ -221,42 +194,20 @@
 
 
     <TextView
-        android:id="@+id/PasswordTitle"
-        android:layout_width="wrap_content"
+        android:clickable="true"
+        android:id="@+id/SubmitFeedback"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Password"
-        android:textSize="20dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/twofactorverifybutton"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:text="Update Profile"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CityList"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-
-        tools:ignore="MissingConstraints" />
-    <EditText
-        android:id="@+id/PasswordText"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/whiteround"
-        android:textSize="20dp"
-        android:paddingHorizontal="10dp"
-        android:hint="Enter Password"
-        app:layout_constraintTop_toBottomOf="@id/PasswordTitle"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="30dp"
-        />
-    <TextView
-        android:id="@+id/PasswordNotice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/PasswordText"
-        app:layout_constraintStart_toStartOf="@id/PasswordText"
-        android:layout_marginLeft="10dp"
-        android:text="Password must be at least 8 characters long"
-        android:textColor="@color/white"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

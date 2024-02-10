@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,6 +39,14 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         val back=view.findViewById<TextView>(R.id.BackArrow)
+        val settings=view.findViewById<ImageView>(R.id.editbanner)
+
+
+        settings.setOnClickListener {
+            val intent = Intent(activity, EditProfileScreen::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
 
         back.setOnClickListener {
             val intent = Intent(activity, BottomNavigationBar::class.java)
