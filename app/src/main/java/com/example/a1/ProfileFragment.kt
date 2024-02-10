@@ -40,8 +40,14 @@ class ProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         val back=view.findViewById<TextView>(R.id.BackArrow)
         val settings=view.findViewById<ImageView>(R.id.editbanner)
+        val book = view.findViewById<TextView>(R.id.showBookedSessions)
 
 
+        book.setOnClickListener {
+            val intent = Intent(activity, BookedSessionScreen::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
         settings.setOnClickListener {
             val intent = Intent(activity, EditProfileScreen::class.java)
             startActivity(intent)
