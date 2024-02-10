@@ -13,6 +13,12 @@
         android:theme="@style/Theme.A1"
         tools:targetApi="31">
         <activity
+            android:name=".AddReviewScreen"
+            android:exported="false" />
+        <activity
+            android:name=".UserFocusedScreen"
+            android:exported="false" />
+        <activity
             android:name=".NotificationScreen"
             android:exported="false" />
         <activity

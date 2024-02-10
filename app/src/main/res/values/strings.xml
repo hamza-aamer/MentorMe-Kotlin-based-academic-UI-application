@@ -12,6 +12,7 @@
     <string name="donthaveaccount">Don’t have an account? <font color='#003c41'><u>Sign Up</u></font></string>
     <string name="rememberpass">Remember your password? <font color='#157177'><u>Login</u></font></string>
     <string name="cancelresetpass">Don’t want to reset password? <font color='#157177'>Login</font></string>
+    <string name="aboutme">I am a passionate UX designer at Google with a focus on creating user-centric and intuitive interfaces. With 10 years of experience, I have had the opportunity to work on diverse projects that have shaped my understanding of design principles and user experience.</string>
 
     <string name="welcomemsg">Hello, <font color='#157177'>Ali</font></string>
 

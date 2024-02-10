@@ -1,11 +1,14 @@
 package com.example.a1
 
+import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
@@ -44,6 +47,14 @@ class SearchResultsFragment : Fragment() {
 
         back.setOnClickListener {
             replacefrag(SearchFragment())
+        }
+
+
+        val btn: ImageView = view.findViewById<ImageView>(R.id.user1)
+        btn.setOnClickListener{
+            val intent = Intent(activity, UserFocusedScreen::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
 
 

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#def8f8"
+    tools:context=".UserFocusedScreen">
+
+
+    <View
+        android:id="@+id/topcolumn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/aboutme"
+        android:background="@drawable/rounded_corner"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#7fd9d3"
+        app:layout_constraintTop_toBottomOf="@id/Title2"/>
+
+
+    <ImageView
+        android:id="@+id/pic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/john"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/Title1"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/imageround"
+        android:padding="10dp"/>
+
+
+
+    <TextView
+        android:id="@+id/aboutmetitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About me"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/line2"
+        android:paddingHorizontal="40dp"
+        android:paddingTop="20dp"/>
+
+    <TextView
+        android:id="@+id/aboutme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/aboutme"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/aboutmetitle"
+        android:paddingHorizontal="40dp"
+        android:paddingBottom="20dp"/>
+
+
+    <TextView
+        android:id="@+id/Title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/Title2"
+        android:text="UX Designer at \nGoogle"
+        app:layout_constraintStart_toStartOf="@id/Title1"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:lineSpacingExtra="15dp"/>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#7fd9d3"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/Title3"/>
+
+
+    <TextView
+        android:id="@+id/BackArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="←"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textColor="#157177"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="@id/Title1"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/Title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Hi, I'm"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="60dp"
+        tools:ignore="MissingConstraints" />
+
+
+
+    <TextView
+        android:id="@+id/stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="⭐ 4.8"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/pic"
+        app:layout_constraintTop_toBottomOf="@id/pic"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        tools:ignore="MissingConstraints" />
+
+
+
+    <TextView
+        android:id="@+id/Title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:clickable="true"
+        android:gravity="left"
+        android:text="John Cooper"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/Title1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="40dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/expertisetitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Expertise Include"
+        app:layout_constraintTop_toBottomOf="@id/topcolumn"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="15dp"
+        android:layout_marginLeft="40dp"
+        android:textColor="#157177"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/career"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Career Advice"
+        app:layout_constraintStart_toStartOf="@id/expertisetitle"
+        app:layout_constraintTop_toBottomOf="@id/expertisetitle"
+        android:background="@drawable/rounded_corner"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="20dp"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/userexp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Career Advice"
+        app:layout_constraintStart_toEndOf="@id/career"
+        app:layout_constraintTop_toBottomOf="@id/expertisetitle"
+        android:background="@drawable/rounded_corner"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="20dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/white"
+        />
+
+
+    <TextView
+        android:id="@+id/leadership"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leadership"
+        app:layout_constraintStart_toStartOf="@id/career"
+        app:layout_constraintTop_toBottomOf="@id/career"
+        android:background="@drawable/rounded_corner"
+        android:layout_marginTop="15dp"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="20dp"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/prototyping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prototyping"
+        app:layout_constraintStart_toEndOf="@id/leadership"
+        app:layout_constraintTop_toTopOf="@id/leadership"
+        android:background="@drawable/rounded_corner"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="20dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/yellowroundborder"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:text="Drop a review 💬"
+        app:layout_constraintBottom_toTopOf="@+id/showBookedSessions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/leadership" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/yellowroundborder"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:text="Join Community 🫂"
+        app:layout_constraintBottom_toTopOf="@+id/showBookedSessions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/leadership" />
+
+    <TextView
+        android:clickable="true"
+        android:id="@+id/showBookedSessions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/twofactorverifybutton"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:text="Book a Session"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

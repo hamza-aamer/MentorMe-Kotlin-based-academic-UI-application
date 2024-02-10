@@ -64,6 +64,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/user1"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:backgroundTint="#dadada"
