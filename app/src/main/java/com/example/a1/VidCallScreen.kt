@@ -4,24 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.TextView
 
-class PhotoCameraScreen : AppCompatActivity() {
+class VidCallScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_photo_camera_screen)
+        setContentView(R.layout.activity_vid_call_screen)
 
-        val close : ImageView =findViewById(R.id.close)
+        val close : ImageView =findViewById(R.id.closecall)
         close.setOnClickListener {
             val intent= Intent(this,BottomNavigationBar::class.java)
-            startActivity(intent)
-            finish()
-
-        }
-
-        val vid : TextView =findViewById(R.id.Video)
-        vid.setOnClickListener {
-            val intent= Intent(this,VideoCameraScreen::class.java)
             startActivity(intent)
             finish()
 

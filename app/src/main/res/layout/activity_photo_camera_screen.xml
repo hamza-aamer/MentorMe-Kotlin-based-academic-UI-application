@@ -32,6 +32,7 @@
 
     <ImageView
         android:layout_width="30dp"
+        android:id="@+id/close"
         android:layout_height="30dp"
         android:src="@drawable/close_black"
         app:layout_constraintStart_toStartOf="parent"

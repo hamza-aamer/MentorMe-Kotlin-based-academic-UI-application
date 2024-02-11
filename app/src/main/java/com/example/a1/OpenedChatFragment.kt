@@ -1,10 +1,12 @@
 package com.example.a1
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,6 +48,37 @@ class OpenedChatFragment : Fragment() {
             fragmentTransaction?.replace(R.id.FrameLayout, ChatFragment())
             fragmentTransaction?.addToBackStack(null)
             fragmentTransaction?.commit()
+        }
+
+
+        val opencam=view.findViewById<ImageView>(R.id.opencam)
+
+
+        opencam.setOnClickListener {
+            val intent = Intent(activity, PhotoCameraScreen::class.java)
+            startActivity(intent)
+            activity?.finish()
+
+        }
+
+        val startcall=view.findViewById<ImageView>(R.id.startcall)
+
+
+        startcall.setOnClickListener {
+            val intent = Intent(activity, VoiceCallScreen::class.java)
+            startActivity(intent)
+            activity?.finish()
+
+        }
+
+        val startvidcall=view.findViewById<ImageView>(R.id.startvidcall)
+
+
+        startvidcall.setOnClickListener {
+            val intent = Intent(activity, VidCallScreen::class.java)
+            startActivity(intent)
+            activity?.finish()
+
         }
 
 
