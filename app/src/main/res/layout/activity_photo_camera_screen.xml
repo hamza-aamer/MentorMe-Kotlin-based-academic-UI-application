@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#def8f8"
+    tools:context=".PhotoCameraScreen">
+
+
+    <View
+        android:id="@+id/CameraView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#cccccc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="130dp"/>
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/baseline_hdr_on_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/CameraView"
+        android:layout_marginTop="10dp"/>
+
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/close_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/CameraView"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/baseline_sunny_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/CameraView"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"/>
+
+
+    <TextView
+        android:id="@+id/slomo"
+        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/CameraView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/Video"
+        android:text="Slo-mo"/>
+
+
+    <TextView
+        android:id="@+id/Video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/CameraView"
+        app:layout_constraintEnd_toStartOf="@id/Photo"
+        app:layout_constraintStart_toEndOf="@id/slomo"
+        android:text="Video"/>
+
+    <TextView
+        android:id="@+id/Photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#27858b"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/CameraView"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@id/Square"
+        android:background="@drawable/searchborderround"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        app:layout_constraintStart_toEndOf="@id/Video"
+        android:text="Photo"/>
+
+    <TextView
+        android:id="@+id/Square"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/CameraView"
+        app:layout_constraintEnd_toStartOf="@id/Portrait"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toEndOf="@id/Photo"
+        android:text="Square"/>
+
+    <TextView
+        android:id="@+id/Portrait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/CameraView"
+        app:layout_constraintStart_toEndOf="@id/Square"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Portrait"/>
+
+
+
+    <ImageView
+        android:id="@+id/takepic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/borderedwhite"
+        android:background="@drawable/twofactorverifybutton"
+        android:padding="3dp"
+        app:layout_constraintTop_toBottomOf="@id/Photo"
+        app:layout_constraintStart_toStartOf="@id/Photo"
+        app:layout_constraintEnd_toEndOf="@id/Photo"
+        android:layout_marginTop="10dp"
+        />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/photo_white"
+        android:background="@drawable/twofactorverifybutton"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/Photo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/takepic"/>
+
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/video_white"
+        android:background="@drawable/twofactorverifybutton"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/Photo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/takepic"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
