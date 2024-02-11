@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#def8f8"
+    tools:context=".UserFocusedScreen">
+
+
+    <View
+        android:id="@+id/topcolumn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/Title3"
+        android:background="@drawable/rounded_corner"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#7fd9d3"
+        app:layout_constraintTop_toBottomOf="@id/title3"/>
+
+
+    <ImageView
+        android:id="@+id/pic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/john"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/Title1"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/imageround"
+        android:padding="10dp"/>
+
+
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/Title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/title3"
+        android:text="$1500/Session"
+        android:paddingBottom="10dp"
+        app:layout_constraintStart_toStartOf="@id/Title1"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textColor="#ffc90a"
+        android:lineSpacingExtra="15dp"/>
+
+
+    <ImageView
+        android:id="@+id/chaticon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/yellowroundborder"
+        android:padding="5dp"
+        android:src="@drawable/chatgreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Title3" />
+
+    <ImageView
+        android:id="@+id/callicon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/yellowroundborder"
+        android:padding="5dp"
+        android:src="@drawable/callgreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Title3" />
+
+    <ImageView
+        android:id="@+id/camicon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/yellowroundborder"
+        android:padding="5dp"
+        android:src="@drawable/videogreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Title3" />
+
+
+
+    <TextView
+        android:id="@+id/BackArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="←"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textColor="#157177"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="5dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/Title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Book your Session"
+        android:textColor="#157177"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/BackArrow"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="20dp"
+        tools:ignore="MissingConstraints" />
+
+
+
+
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/Title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:clickable="true"
+        android:gravity="left"
+        android:text="John Cooper"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/Title1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="40dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="@id/Title2"
+        app:layout_constraintTop_toBottomOf="@id/Title2"
+        android:textSize="20dp"
+        android:text="⭐4.8"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+
+
+
+
+    <CalendarView
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/Title3"
+        android:focusedMonthDateColor="#157177"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+    <TextView
+        android:id="@+id/availableslots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/calendar"
+        android:text="Available Time Slots"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="15dp"/>
+
+    <TextView
+        android:id="@+id/slot1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10.00 AM"
+        app:layout_constraintTop_toBottomOf="@id/availableslots"
+        android:background="@drawable/lightgreyround"
+        android:padding="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/slot2"
+        app:layout_constraintBottom_toTopOf="@id/BookApt"/>
+    <TextView
+        android:id="@+id/slot2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="11.00 AM"
+        app:layout_constraintTop_toBottomOf="@id/availableslots"
+        android:background="@drawable/blueround"
+        android:padding="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/BookApt"/>
+    <TextView
+        android:id="@+id/slot3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12.00 PM"
+        app:layout_constraintTop_toBottomOf="@id/availableslots"
+        android:background="@drawable/lightgreyround"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/slot2"
+        app:layout_constraintBottom_toTopOf="@id/BookApt"/>
+
+
+
+
+    <TextView
+        android:clickable="true"
+        android:id="@+id/BookApt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/twofactorverifybutton"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:text="Book an Appointment"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

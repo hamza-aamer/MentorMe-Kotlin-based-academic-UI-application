@@ -220,7 +220,7 @@
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
         android:text="Drop a review 💬"
-        app:layout_constraintBottom_toTopOf="@+id/showBookedSessions"
+        app:layout_constraintBottom_toTopOf="@+id/booksession"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/leadership" />
 
@@ -233,13 +233,13 @@
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
         android:text="Join Community 🫂"
-        app:layout_constraintBottom_toTopOf="@+id/showBookedSessions"
+        app:layout_constraintBottom_toTopOf="@+id/booksession"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/leadership" />
 
     <TextView
         android:clickable="true"
-        android:id="@+id/showBookedSessions"
+        android:id="@+id/booksession"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"

@@ -3,13 +3,14 @@ package com.example.a1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.a1.databinding.ActivityBookAppointmentScreenBinding
 import com.example.a1.databinding.ActivityUserFocusedScreenBinding
 
-class UserFocusedScreen : AppCompatActivity() {
-    private lateinit var binding : ActivityUserFocusedScreenBinding
+class BookAppointmentScreen : AppCompatActivity() {
+    private lateinit var binding : ActivityBookAppointmentScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityUserFocusedScreenBinding.inflate(layoutInflater)
+        binding= ActivityBookAppointmentScreenBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
@@ -21,21 +22,15 @@ class UserFocusedScreen : AppCompatActivity() {
 
         }
 
-        binding.addreview.setOnClickListener {
-            val intent = Intent(this,AddReviewScreen::class.java)
-            startActivity(intent)
-            finish()
+        binding.BookApt.setOnClickListener {
 
-        }
-
-        binding.booksession.setOnClickListener {
-
-            val intent = Intent(this,BookAppointmentScreen::class.java)
+            val intent = Intent(this,BottomNavigationBar::class.java)
             startActivity(intent)
             finish()
 
 
         }
+
 
 
 
