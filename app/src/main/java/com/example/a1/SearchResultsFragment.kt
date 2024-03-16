@@ -1,18 +1,15 @@
 package com.example.a1
 
-import android.content.Intent
-import android.media.Image
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +25,7 @@ class SearchResultsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var mentorsRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,12 +48,12 @@ class SearchResultsFragment : Fragment() {
         }
 
 
-        val btn: ImageView = view.findViewById<ImageView>(R.id.user1)
-        btn.setOnClickListener{
-            val intent = Intent(activity, UserFocusedScreen::class.java)
-            startActivity(intent)
-            activity?.finish()
-        }
+//        val btn: ImageView = view.findViewById<ImageView>(R.id.user1)
+//        btn.setOnClickListener{
+//            val intent = Intent(activity, UserFocusedScreen::class.java)
+//            startActivity(intent)
+//            activity?.finish()
+//        }
 
 
         val spinner: Spinner = view.findViewById(R.id.FilterList)
@@ -72,6 +70,23 @@ class SearchResultsFragment : Fragment() {
         }
 
         return view
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mentorsRecyclerView = view.findViewById<RecyclerView>(R.id.searchResult)
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        mentorsRecyclerView.layoutManager = layoutManager
+
+        loadMentors()
+    }
+
+    private fun loadMentors() {
+        // Main thread callback
+        if (isAdded) { // Check fragment is attached
+            val search = MentorManager.searchedMentors
+            mentorsRecyclerView.adapter = searchItemAdapter(requireContext(),search)
+        }
+
     }
 
 

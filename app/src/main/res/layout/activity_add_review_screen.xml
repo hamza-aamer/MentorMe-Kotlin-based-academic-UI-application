@@ -102,15 +102,17 @@
         />
 
 
-    <TextView
+    <RatingBar
+        android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/experiencetext"
-        android:text="☆☆☆☆☆"
-        android:textSize="50dp"
-        android:textColor="#157177"
+
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="0.5"
         android:layout_marginTop="15dp"/>
 
 

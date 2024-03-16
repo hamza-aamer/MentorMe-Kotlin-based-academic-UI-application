@@ -20,8 +20,7 @@ data class User(
     val education: String = "",
     val experience: List<Experience> = listOf(),
     val favorites: List<String> = listOf(), // IDs of favorite mentors
-    val reviewsGiven: List<Review> = listOf(),
-    val reviewsReceived: List<Review> = listOf(),
+    val reviewsGiven: ArrayList<Review> = ArrayList(),
     val availability: Map<String, Boolean> = mapOf(), // Days of the week or time slots available for mentoring
     val sessionsBooked: List<Session> = listOf(),
     val chats: List<Chat> = listOf(),
@@ -39,8 +38,8 @@ data class Experience(
 )
 
 data class Review(
-    val reviewerId: String = "",
-    val targetUserId: String = "", // Mentor or mentee ID
+    val userId: String = "",
+    val targetUserName: String = "", // Mentor or mentee ID
     val rating: Float = 0f,
     val comment: String = "",
     val timestamp: Long = System.currentTimeMillis()
@@ -80,6 +79,9 @@ object FirestoreReference{
 }
 object MentorManager {
     private val db: FirebaseFirestore = FirestoreReference.db
+    var searchedMentors: ArrayList<Mentor> = ArrayList()
+    var focusedMentor: Mentor? = null
+    var lastUpdatedAllMentors: ArrayList<Mentor> = ArrayList()
     /**
      * Adds a new mentor to the Firestore database.
      *
@@ -102,6 +104,7 @@ object MentorManager {
                 val mentor = document.toObject<Mentor>()
                 mentorList.add(mentor)
             }
+            lastUpdatedAllMentors=mentorList
             callback(mentorList)
 
         }

@@ -2,15 +2,14 @@ package com.example.a1
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.fragment.AbstractListDetailFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,6 +25,9 @@ class SearchFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var Mentors : ArrayList<Mentor> = ArrayList()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -44,8 +46,25 @@ class SearchFragment : Fragment() {
         val img = view.findViewById<ImageView>(R.id.entimg) // Assuming the ID of your button is "entButton"
         val img2 = view.findViewById<ImageView>(R.id.persimg) // Assuming the ID of your button is "entButton"
         val img3 = view.findViewById<ImageView>(R.id.eduimg) // Assuming the ID of your button is "entButton"
-
+        val searchtext = view.findViewById<EditText>(R.id.searchtext)
+        val searchbtn = view.findViewById<ImageView>(R.id.searchicon)
         val back=view.findViewById<TextView>(R.id.BackArrow)
+
+
+        searchbtn.setOnClickListener {
+            var text = searchtext.text.toString()
+            for (mentor in MentorManager.lastUpdatedAllMentors){
+                if (mentor.name.contains(text) || mentor.role.contains(text)){
+                    Mentors.add(mentor)
+                }
+            }
+
+            for (Mentor in Mentors){
+                Log.d("Mentor",Mentor.name)
+            }
+            MentorManager.searchedMentors=Mentors
+            replacefrag(SearchResultsFragment())
+        }
 
         back.setOnClickListener {
             val intent = Intent(activity, BottomNavigationBar::class.java)
@@ -81,6 +100,7 @@ class SearchFragment : Fragment() {
 
         return view
     }
+
 
 
     companion object {
