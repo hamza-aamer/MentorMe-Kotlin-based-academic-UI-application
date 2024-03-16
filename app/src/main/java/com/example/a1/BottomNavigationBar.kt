@@ -1,8 +1,8 @@
 package com.example.a1
 
-import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.a1.databinding.ActivityBottomNavigationBarBinding
 
 class BottomNavigationBar : AppCompatActivity() {
@@ -35,6 +35,8 @@ class BottomNavigationBar : AppCompatActivity() {
             }
             ret
         }
+
+        DataManager.currentFragment?.let { replacefrag(it) }
 
     }
 

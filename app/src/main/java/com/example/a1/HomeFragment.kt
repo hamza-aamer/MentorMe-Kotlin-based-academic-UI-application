@@ -2,11 +2,13 @@ package com.example.a1
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +24,8 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var mentorsRecyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +51,22 @@ class HomeFragment : Fragment() {
         }
 
         return view
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mentorsRecyclerView = view.findViewById(R.id.topmentors)
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        mentorsRecyclerView.layoutManager = layoutManager
+
+        loadMentors()
+    }
+    private fun loadMentors() {
+        MentorManager.getAllMentors { mentors ->
+            // Main thread callback
+            if (isAdded) { // Check fragment is attached
+                mentorsRecyclerView.adapter = mentorAdapter(mentors)
+            }
+        }
     }
 
     companion object {

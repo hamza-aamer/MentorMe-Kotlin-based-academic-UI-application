@@ -1,11 +1,12 @@
 package com.example.a1
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class EditProfileScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +48,32 @@ class EditProfileScreen : AppCompatActivity() {
             // Apply the adapter to the spinner.
             spinner2.adapter = adapter
         }
+
+
+        val btn = findViewById<TextView>(R.id.editprofile)
+
+
+        btn.setOnClickListener {
+
+            DataManager.currentUser?.email = findViewById<EditText>(R.id.EmailText).text.toString()
+
+            DataManager.currentUser?.name = findViewById<EditText>(R.id.NameText).text.toString()
+
+            DataManager.currentUser?.contactNumber = findViewById<EditText>(R.id.NumberText).text.toString()
+            val country = findViewById<Spinner>(R.id.CountryList).selectedItem.toString()
+            val city = findViewById<Spinner>(R.id.CityList).selectedItem.toString()
+
+            DataManager.currentUser?.location = "$city, $country"
+
+            DataManager.updateUser(DataManager.currentUser!!)
+
+            DataManager.currentFragment=ProfileFragment()
+
+            val intent = Intent(this, BottomNavigationBar::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
 
 

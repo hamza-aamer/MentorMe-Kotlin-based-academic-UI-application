@@ -148,6 +148,8 @@
 
 
     <TextView
+        android:id="@+id/logout"
+        android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -167,7 +169,6 @@
             android:id="@+id/pfp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/john"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="130dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -176,6 +177,7 @@
 
         <ImageView
             android:id="@+id/editpfp"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_edit_24"
@@ -197,6 +199,7 @@
             android:padding="5dp"/>
 
         <TextView
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ali"

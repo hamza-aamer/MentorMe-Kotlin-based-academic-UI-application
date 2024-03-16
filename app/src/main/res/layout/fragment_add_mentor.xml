@@ -97,14 +97,17 @@
             android:background="@drawable/borderedwhite">
 
             <ImageView
+                android:id="@+id/uploadphotobtn"
+                android:clickable="true"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/baseline_photo_camera_24"
                 android:layout_gravity="center"/>
             <TextView
+                android:id="@+id/photouploadstatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upload Video"
+                android:text="Upload Photo"
                 android:layout_gravity="center|bottom"
                 android:layout_marginBottom="10dp"
                 android:textColor="#157177"/>
@@ -128,6 +131,7 @@
                 android:textSize="15dp"/>
 
             <EditText
+                android:id="@+id/editNameText"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:background="@drawable/whiteround"
@@ -144,6 +148,7 @@
                 android:textSize="15dp"/>
 
             <EditText
+                android:id="@+id/editDescText"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:background="@drawable/whiteround"
@@ -159,6 +164,7 @@
                 android:textSize="15dp"/>
 
             <EditText
+                android:id="@+id/editAvailText"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:background="@drawable/whiteround"

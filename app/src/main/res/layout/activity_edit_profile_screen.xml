@@ -195,7 +195,7 @@
 
     <TextView
         android:clickable="true"
-        android:id="@+id/SubmitFeedback"
+        android:id="@+id/editprofile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"

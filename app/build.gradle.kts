@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -49,14 +50,19 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.test.ext:junit-ktx:1.1.5")
+    implementation("com.google.firebase:firebase-firestore:24.10.3")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
     testImplementation ("androidx.test:core-ktx:1.1.0")
 
 
 
-
+    implementation ("com.google.firebase:firebase-auth:21.0.1") // Use the latest version available
+    implementation ("com.google.firebase:firebase-firestore:24.0.1")
     testImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     testImplementation("androidx.test.espresso:espresso-intents:3.5.1")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.7")
     implementation( "androidx.appcompat:appcompat:1.0.0")
