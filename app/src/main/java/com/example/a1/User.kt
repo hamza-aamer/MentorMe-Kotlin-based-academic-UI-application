@@ -18,27 +18,16 @@ data class User(
     val expertise: List<String> = listOf(),
     var location: String = "",
     val education: String = "",
-    val experience: List<Experience> = listOf(),
     val favorites: List<String> = listOf(), // IDs of favorite mentors
     val reviewsGiven: ArrayList<Review> = ArrayList(),
-    val availability: Map<String, Boolean> = mapOf(), // Days of the week or time slots available for mentoring
-    val sessionsBooked: List<Session> = listOf(),
-    val chats: List<Chat> = listOf(),
-    val notificationsEnabled: Boolean = true,
+    val sessionsBooked: ArrayList<Session> = ArrayList(),
     val lastOnlineTimestamp: Long = System.currentTimeMillis(),
-    val roles: List<String> = listOf("user") // Additional roles can be "admin", "mentor", etc.
 )
 
-data class Experience(
-    val title: String = "",
-    val company: String = "",
-    val startDate: String = "",
-    val endDate: String = "",
-    val description: String = ""
-)
 
 data class Review(
     val userId: String = "",
+    val mentorId: String = "",
     val targetUserName: String = "", // Mentor or mentee ID
     val rating: Float = 0f,
     val comment: String = "",
@@ -46,12 +35,10 @@ data class Review(
 )
 
 data class Session(
-    val sessionId: String = "",
     val mentorId: String = "",
     val menteeId: String = "",
-    val scheduledTime: Long = System.currentTimeMillis(),
-    val topic: String = "",
-    val status: String = "scheduled" // Could be "completed", "cancelled", etc.
+    val scheduledTime: String = "",
+    val status: String = "scheduled" // "scheduled", "inProgress", "completed", "cancelled"
 )
 
 data class Mentor(
@@ -65,13 +52,59 @@ data class Mentor(
     var role: String = "",
     var cost: String = "",
     var Rating: String = "",
-    val reviewsReceived: List<Review> = listOf(),
+    val sessionsBooked: ArrayList<Session> = ArrayList(),
+    val reviewsReceived: ArrayList<Review> = ArrayList(),
+)
+
+object ChatManager {
+    private val db: FirebaseFirestore = FirestoreReference.db
+    var chat: Chat ?= null
+    var focusedMessage: Message ?= null
+    /**
+     * Adds a new chat to the Firestore database.
+     *
+     * @param chat The chat to add.
+     */
+    fun addChat(chat: Chat) {
+        db.collection("chats").document(chat.chatId).set(chat)
+    }
+
+    /**
+     * Retrieves all chats from the Firestore database.
+     *
+     * @return A list of chats.
+     */
+
+    fun getallchats(callback: (ArrayList<Chat>) -> Unit){
+        db.collection("chats").get().addOnSuccessListener { result ->
+            val chatList = ArrayList<Chat>()
+
+            for (document in result) {
+                val chat = document.toObject<Chat>()
+                chatList.add(chat)
+            }
+            callback(chatList)
+
+        }
+    }
+
+
+    fun updateChat() {
+        db.collection("chats").document("GlobalChat").set(chat!!)
+    }
+
+}
+
+
+data class Message(
+    val messageId: String = "",
+    val senderId: String = "",
+    val message: String = "",
+    val timestamp: String = ""
 )
 data class Chat(
-    val chatId: String = "",
-    val userIds: List<String> = listOf(), // Participants in the chat
-    val lastMessage: String = "",
-    val lastMessageTimestamp: Long = System.currentTimeMillis()
+    val chatId: String = "GlobalChat",
+    var messages: ArrayList<Message> = ArrayList()
 )
 
 object FirestoreReference{

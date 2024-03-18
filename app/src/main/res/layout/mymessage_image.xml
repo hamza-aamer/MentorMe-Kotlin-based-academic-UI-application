@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+
+
+
+    <ImageView
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/messagetext"
+        android:longClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/messageboxgreen"
+        android:layout_margin="20dp"
+        android:padding="20dp"/>
+    <TextView
+        android:id="@+id/messagetime"
+        app:layout_constraintTop_toBottomOf="@id/messagetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:layout_marginRight="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@android:color/darker_gray"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

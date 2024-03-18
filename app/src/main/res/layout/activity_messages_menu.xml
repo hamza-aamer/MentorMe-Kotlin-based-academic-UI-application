@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#def8f8"
+
+    tools:context=".messagesMenu">
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/rounded_corner"
+            android:gravity="center"
+            android:text="Message Interface"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/BackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="←"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/messagetext"
+            android:layout_width="wrap_content"
+            android:textSize="20dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="50dp"
+            android:background="@drawable/whiteround"
+            android:padding="10dp"
+            android:text="Testing Testing"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/deletemessage"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/editmessage"
+            android:background="@drawable/redround"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:padding="10dp"
+
+
+            app:layout_constraintTop_toBottomOf="@id/messagetext" />
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/editmessage"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:gravity="center"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/deletemessage"
+            android:background="@drawable/messageboxgreen"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintTop_toBottomOf="@id/messagetext" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

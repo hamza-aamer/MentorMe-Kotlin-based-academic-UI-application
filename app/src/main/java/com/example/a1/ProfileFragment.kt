@@ -26,6 +26,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.RoundedBitmapDrawable
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -51,6 +53,8 @@ class ProfileFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var PhotoLauncher: ActivityResultLauncher<Intent>
+    private lateinit var reviewsRecyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -126,6 +130,21 @@ class ProfileFragment : Fragment() {
             activity?.finish()
         }
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        reviewsRecyclerView = view.findViewById(R.id.Reviews)
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        reviewsRecyclerView.layoutManager = layoutManager
+
+        loadReviews()
+    }
+    private fun loadReviews() {
+        if (isAdded) { // Check fragment is attached
+            reviewsRecyclerView.adapter = ReviewAdapter(DataManager.currentUser!!.reviewsGiven)
+        }
+
     }
 
     fun checkPermissionAndPickPhoto(){

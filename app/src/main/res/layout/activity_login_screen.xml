@@ -128,6 +128,7 @@
         android:textSize="20dp"
         android:paddingHorizontal="10dp"
         android:hint="Enter Password"
+        android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@id/PasswordTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

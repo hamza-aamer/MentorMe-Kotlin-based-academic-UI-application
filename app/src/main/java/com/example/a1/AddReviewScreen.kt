@@ -23,11 +23,14 @@ class AddReviewScreen : AppCompatActivity() {
         binding.SubmitFeedback.setOnClickListener {
             val newreview = Review(
                 userId = DataManager.currentUser!!.userId,
+                mentorId = MentorManager.focusedMentor!!.mentorId,
                 targetUserName = MentorManager.focusedMentor!!.name,
                 rating = binding.ratingBar.rating,
                 comment = binding.experiencetext.text.toString()
             )
             DataManager.currentUser!!.reviewsGiven.add(newreview)
+            MentorManager.focusedMentor!!.reviewsReceived.add(newreview)
+            MentorManager.updateMentor(MentorManager.focusedMentor!!)
             DataManager.updateUser(DataManager.currentUser!!)
             val intent = Intent(this,UserFocusedScreen::class.java)
             startActivity(intent)

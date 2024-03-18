@@ -185,6 +185,7 @@
 
     <TextView
         android:id="@+id/slot1"
+        android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10.00 AM"
@@ -196,17 +197,21 @@
         app:layout_constraintBottom_toTopOf="@id/BookApt"/>
     <TextView
         android:id="@+id/slot2"
+        android:clickable="true"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="11.00 AM"
         app:layout_constraintTop_toBottomOf="@id/availableslots"
-        android:background="@drawable/blueround"
+        android:background="@drawable/lightgreyround"
         android:padding="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/BookApt"/>
     <TextView
         android:id="@+id/slot3"
+        android:clickable="true"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="12.00 PM"

@@ -20,6 +20,7 @@ class mentorAdapter(private val mentorList: ArrayList<Mentor>) : RecyclerView.Ad
         val mentorProfilePic: ImageView = view.findViewById(R.id.mentorprofilepic)
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MentorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.mentor_item, parent, false)
         return MentorViewHolder(view)

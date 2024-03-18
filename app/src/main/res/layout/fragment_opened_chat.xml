@@ -152,60 +152,80 @@
             android:gravity="bottom"
             app:layout_constraintBottom_toTopOf="@id/chatbox">
 
-            <FrameLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:layout_marginLeft="150dp"
                 android:layout_height="wrap_content">
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/messagetext"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hello, You there?"
+                    android:text="yes\n\\n\n"
                     android:background="@drawable/messageboxgreen"
                     android:textSize="15dp"
-                    android:padding="10dp"
                     android:layout_margin="20dp"
-                    android:layout_gravity="center|right"/>
+                    android:padding="10dp"
+                    android:gravity="left"
+
+                    />
                 <TextView
+                    android:id="@+id/messagetime"
+                    app:layout_constraintTop_toBottomOf="@id/messagetext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10:30"
-                    android:layout_gravity="center|right"
                     android:layout_marginRight="35dp"
-                    android:layout_marginTop="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@android:color/darker_gray"/>
 
-            </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <FrameLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginRight="100dp">
                 <ImageView
+                    android:id="@+id/messagerpic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_margin="20dp"
                     android:src="@drawable/john"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/messagermessage"
+                    app:layout_constraintStart_toEndOf="@id/messagerpic"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
+                    android:text="yes\n\n\n\n\n\n\n"
                     android:background="@drawable/whiteround"
                     android:textSize="15dp"
                     android:padding="10dp"
                     android:layout_gravity="center|left"
-                    android:layout_marginLeft="110dp"/>
+                    android:layout_marginLeft="20dp"/>
                 <TextView
+                    android:id="@+id/messagermessagetime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/messagermessage"
+                    app:layout_constraintTop_toBottomOf="@id/messagermessage"
                     android:text="10:32"
                     android:layout_gravity="center|left"
-                    android:layout_marginLeft="120dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="10dp"
                     android:textColor="@android:color/darker_gray"/>
 
-            </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"

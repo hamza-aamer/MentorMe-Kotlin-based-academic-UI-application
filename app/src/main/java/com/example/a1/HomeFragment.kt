@@ -1,7 +1,9 @@
 package com.example.a1
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +45,7 @@ class HomeFragment : Fragment() {
         val view= inflater.inflate(R.layout.fragment_home, container, false)
 
 
+
         val btn: ImageButton = view.findViewById<ImageButton>(R.id.notifbutton)
         btn.setOnClickListener{
             val intent = Intent(activity, NotificationScreen::class.java)
@@ -59,11 +62,22 @@ class HomeFragment : Fragment() {
         mentorsRecyclerView.layoutManager = layoutManager
 
         loadMentors()
+
+
+        FirestoreReference.db.collection("mentors")
+            .addSnapshotListener { value, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+                loadMentors()
+            }
+
+
     }
     private fun loadMentors() {
         MentorManager.getAllMentors { mentors ->
-            // Main thread callback
-            if (isAdded) { // Check fragment is attached
+            if (isAdded) {
                 mentorsRecyclerView.adapter = mentorAdapter(mentors)
             }
         }

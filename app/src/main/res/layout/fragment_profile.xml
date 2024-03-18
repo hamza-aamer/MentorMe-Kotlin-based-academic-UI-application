@@ -219,7 +219,7 @@
             android:textColor="#918c8c"
             app:layout_constraintTop_toBottomOf="@id/pfp"
             android:layout_marginTop="35dp"
-            android:textSize="20dp"
+            android:textSize="15dp"
             app:layout_constraintStart_toStartOf="@id/pfp"
             app:layout_constraintEnd_toEndOf="@id/pfp"/>
 
@@ -476,151 +476,15 @@
             tools:ignore="MissingConstraints" />
 
 
-        <HorizontalScrollView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Reviews"
-            app:layout_constraintTop_toBottomOf="@id/MyReviews"
             android:layout_width="match_parent"
-            android:scrollbars="none"
             android:layout_height="wrap_content"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <FrameLayout
-                    android:layout_margin="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="100dp"
-                        android:backgroundTint="#dadada"
-                        android:src="@drawable/rounded_corner"/>
+            android:scrollbars="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/MyReviews"/>
 
 
 
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="John Cooper"
-                            android:textStyle="bold"
-                            android:layout_marginTop="10dp"
-                            android:layout_gravity="center|top"
-                            android:textColor="@color/white"
-                            android:textSize="10dp"
-                            android:padding="10dp"/>
-
-                        <TextView
-                            android:layout_width="130dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="55dp"
-                            android:text="John provided excellent Prototyping Techniques and insights. I highly recommend him!"
-                            android:textSize="8dp"
-                            android:layout_marginLeft="10dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="40dp"
-                            android:text="⭐⭐⭐⭐⭐"
-                            android:layout_gravity="center|top"
-                            android:textSize="8dp"/>
-
-
-
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_margin="10dp"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="100dp"
-                        android:backgroundTint="#dadada"
-                        android:src="@drawable/rounded_corner"/>
-
-
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="emma Phillips"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:layout_gravity="center|top"
-                        android:textColor="@color/white"
-                        android:textSize="10dp"
-                        android:padding="10dp"/>
-
-                    <TextView
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="55dp"
-                        android:text="Her tips were valuable. Would love to connect again. "
-                        android:textSize="8dp"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:text="⭐⭐⭐⭐"
-                        android:layout_gravity="center|top"
-                        android:textSize="8dp"/>
-
-
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_margin="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="100dp"
-                        android:backgroundTint="#dadada"
-                        android:src="@drawable/rounded_corner"/>
-
-
-
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Jane"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:layout_gravity="center|top"
-                        android:textColor="@color/white"
-                        android:textSize="10dp"
-                        android:padding="10dp"/>
-
-                    <TextView
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="55dp"
-                        android:text="Impressive session!"
-                        android:textSize="8dp"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:text="⭐⭐⭐"
-                        android:layout_gravity="center|top"
-                        android:textSize="8dp"/>
-
-
-
-                </FrameLayout>
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

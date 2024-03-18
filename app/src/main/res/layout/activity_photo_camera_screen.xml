@@ -8,16 +8,18 @@
     tools:context=".PhotoCameraScreen">
 
 
-    <View
+
+    <androidx.camera.view.PreviewView
         android:id="@+id/CameraView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="#cccccc"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="100dp"
-        android:layout_marginBottom="130dp"/>
-
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="130dp"
+        android:background="#cccccc"
+        >
+    </androidx.camera.view.PreviewView>
 
     <ImageView
         android:layout_width="30dp"
