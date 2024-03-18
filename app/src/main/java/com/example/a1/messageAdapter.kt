@@ -3,9 +3,6 @@ package com.example.a1
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import java.net.HttpURLConnection
-import java.net.URL
+import com.bumptech.glide.Glide
 
 
 class messageAdapter(val context: Context, val items: ArrayList<Message>,val act: Context ) :
@@ -70,7 +66,6 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
                 // Assuming `item` has `text` and `time` properties for MyMessageType
                 holder.txt.text = (item as Message).message
                 holder.time.text = (item as Message).timestamp
-
                 holder.txt.setOnLongClickListener {
                     ChatManager.focusedMessage = (item as Message)
 
@@ -90,14 +85,20 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
                 MentorManager.getAllMentors{it ->
                     for (mentor in it){
                         if(mentor.mentorId == (item as Message).senderId){
-                            downloadAndSetImage(holder.pic, mentor.profileImageUrl)
+                            Glide.with(holder.pic)
+                                .load(mentor.profileImageUrl)
+                                .circleCrop()
+                                .into(holder.pic)
                         }
                     }
                 }
                 DataManager.getAllUsers { it ->
                     for (user in it) {
                         if (user.userId == (item as Message).senderId) {
-                            downloadAndSetImage(holder.pic, user.profileImageUrl)
+                            Glide.with(holder.pic)
+                                .load(user.profileImageUrl)
+                                .circleCrop()
+                                .into(holder.pic)
                         }
                     }
                 }
@@ -107,25 +108,39 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
             }
             is MyImageViewHolder -> {
                 // Assuming `item` has `text`, `time`, and `picture` properties for MyMessageType
-                downloadAndSetImage(holder.txt, (item as Message).message)
-
+                Glide.with(holder.txt)
+                    .load((item as Message).message)
+                    .into(holder.txt)
+                holder.txt.setOnLongClickListener{
+                    ChatManager.chat!!.messages=removeMessageById(ChatManager.chat!!.messages,(item as Message).messageId)
+                    ChatManager.updateChat()
+                    true
+                }
                 holder.time.text = (item as Message).timestamp
             }
             is OtherImageViewHolder -> {
                 // Assuming `item` has `text`, `time`, and `picture` properties for OtherMessageType
-                downloadAndSetImage(holder.txt, (item as Message).message)
+                Glide.with(holder.txt)
+                    .load((item as Message).message)
+                    .circleCrop()
+                    .into(holder.txt)
                 holder.time.text = (item as Message).timestamp
                 MentorManager.getAllMentors{it ->
                     for (mentor in it){
                         if(mentor.mentorId == (item as Message).senderId){
-                            downloadAndSetImage(holder.pic, mentor.profileImageUrl)
+                            Glide.with(holder.pic)
+                                .load(mentor.profileImageUrl)
+                                .into(holder.pic)
                         }
                     }
                 }
                 DataManager.getAllUsers { it ->
                     for (user in it) {
                         if (user.userId == (item as Message).senderId) {
-                            downloadAndSetImage(holder.pic, user.profileImageUrl)
+                            Glide.with(holder.pic)
+                                .load(user.profileImageUrl)
+                                .circleCrop()
+                                .into(holder.pic)
                         }
                     }
                 }
@@ -133,27 +148,22 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
         }
     }
 
-    fun downloadAndSetImage(imageView: ImageView, imageUrl: String) {
-        Thread {
-            try {
-                val url = URL(imageUrl)
-                val connection = url.openConnection() as HttpURLConnection
-                connection.connect()
-                val inputStream = connection.inputStream
-                val bitmap = BitmapFactory.decodeStream(inputStream)
 
+    fun removeMessageById(messages: ArrayList<Message>, messageId: String): ArrayList<Message> {
+        // Iterate through the list to find the message with the given messageId
+        val iterator = messages.iterator()
 
-
-
-                // Use a Handler to post the result back to the main thread
-                Handler(Looper.getMainLooper()).post {
-                    imageView.setImageBitmap(bitmap)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                // Handle exceptions or errors as necessary
+        while (iterator.hasNext()) {
+            val message = iterator.next()
+            if (message.messageId == messageId) {
+                // Remove the message from the list
+                iterator.remove()
+                break // Assuming messageId is unique and only one item needs to be removed
             }
-        }.start()
+        }
+
+        // Return the updated list
+        return messages
     }
     override fun getItemCount(): Int {
         return items.size

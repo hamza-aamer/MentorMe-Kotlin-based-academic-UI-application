@@ -1,16 +1,12 @@
 package com.example.a1
 
-import android.graphics.BitmapFactory
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import java.net.HttpURLConnection
-import java.net.URL
+import com.bumptech.glide.Glide
 
 class mentorAdapter(private val mentorList: ArrayList<Mentor>) : RecyclerView.Adapter<mentorAdapter.MentorViewHolder>() {
 
@@ -30,28 +26,11 @@ class mentorAdapter(private val mentorList: ArrayList<Mentor>) : RecyclerView.Ad
         val mentor = mentorList[position]
         holder.nameTextView.text = mentor.name
         holder.roleTextView.text = mentor.role
-        downloadAndSetImage(holder.mentorProfilePic, mentor.profileImageUrl)
+        Glide.with(holder.mentorProfilePic)
+            .load(mentor.profileImageUrl)
+            .into(holder.mentorProfilePic)
         }
-    fun downloadAndSetImage(imageView: ImageView, imageUrl: String) {
-        Thread {
-            try {
-                val url = URL(imageUrl)
-                val connection = url.openConnection() as HttpURLConnection
-                connection.connect()
-                val inputStream = connection.inputStream
-                val originalBitmap = BitmapFactory.decodeStream(inputStream)
 
-
-                // Use a Handler to post the result back to the main thread
-                Handler(Looper.getMainLooper()).post {
-                    imageView.setImageBitmap(originalBitmap)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                // Handle exceptions or errors as necessary
-            }
-        }.start()
-    }
 
 
     override fun getItemCount() = mentorList.size

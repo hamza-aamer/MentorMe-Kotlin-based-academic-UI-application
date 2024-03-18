@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -31,7 +32,9 @@ class searchItemAdapter(private val context: Context, private val mentorList: Ar
         val mentor = mentorList[position]
         holder.nameTextView.text = mentor.name
         holder.roleTextView.text = mentor.role
-        downloadAndSetImage(holder.mentorProfilePic, mentor.profileImageUrl)
+        Glide.with(holder.mentorProfilePic)
+            .load(mentor.profileImageUrl)
+            .into(holder.mentorProfilePic)
 
         holder.mentorProfilePic.setOnClickListener {
             MentorManager.focusedMentor= mentor

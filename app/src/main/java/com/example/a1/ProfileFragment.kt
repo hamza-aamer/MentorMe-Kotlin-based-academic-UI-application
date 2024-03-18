@@ -6,13 +6,9 @@ package com.example.a1
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Resources
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +19,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.RoundedBitmapDrawable
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,8 +26,6 @@ import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.FirebaseStorage
-import java.net.HttpURLConnection
-import java.net.URL
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -95,12 +87,11 @@ class ProfileFragment : Fragment() {
 
         Glide.with(view.findViewById<ImageView>(R.id.pfp))
             .load(DataManager.currentUser!!.profileImageUrl)
-            .placeholder(R.drawable.john)
+            .circleCrop()
             .into(pfp)
 
 
 
-        downloadAndSetImage(pfp,DataManager.currentUser!!.profileImageUrl)
 
 
 
@@ -184,31 +175,7 @@ class ProfileFragment : Fragment() {
                 }
             }
     }
-    fun downloadAndSetImage(imageView: ImageView, imageUrl: String) {
-        Thread {
-            try {
-                val url = URL(imageUrl)
-                val connection = url.openConnection() as HttpURLConnection
-                connection.connect()
-                val inputStream = connection.inputStream
-                val bitmap = BitmapFactory.decodeStream(inputStream)
-                val roundedBitmapWrapper: RoundedBitmapDrawable =
-                    RoundedBitmapDrawableFactory.create(Resources.getSystem(), bitmap)
-                roundedBitmapWrapper.isCircular = true
 
-
-
-
-                // Use a Handler to post the result back to the main thread
-                Handler(Looper.getMainLooper()).post {
-                    imageView.setImageDrawable(roundedBitmapWrapper)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                // Handle exceptions or errors as necessary
-            }
-        }.start()
-    }
     fun postToFirestore(url : String){
         Firebase.firestore.collection("users")
             .document(DataManager.currentUser!!.userId)
@@ -216,7 +183,10 @@ class ProfileFragment : Fragment() {
             .addOnSuccessListener {
                 //update the url in the user model
                 DataManager.currentUser!!.profileImageUrl = url
-                downloadAndSetImage(pfp,url)
+                Glide.with(pfp)
+                    .load(DataManager.currentUser!!.profileImageUrl)
+                    .circleCrop()
+                    .into(pfp)
             }
     }
 

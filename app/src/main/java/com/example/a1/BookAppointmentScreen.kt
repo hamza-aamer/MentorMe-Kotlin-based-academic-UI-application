@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.RoundedBitmapDrawable
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import com.bumptech.glide.Glide
 import com.example.a1.databinding.ActivityBookAppointmentScreenBinding
 import java.net.HttpURLConnection
 import java.net.URL
@@ -34,7 +35,10 @@ class BookAppointmentScreen : AppCompatActivity() {
 
 
         binding.Title2.text = MentorManager.focusedMentor!!.name
-        downloadAndSetImage(binding.pic, MentorManager.focusedMentor!!.profileImageUrl)
+        Glide.with(binding.pic)
+            .load(MentorManager.focusedMentor!!.profileImageUrl)
+            .circleCrop()
+            .into(binding.pic)
 
 
         binding.BackArrow.setOnClickListener {

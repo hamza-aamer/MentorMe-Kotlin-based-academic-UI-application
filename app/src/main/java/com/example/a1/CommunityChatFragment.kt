@@ -1,8 +1,13 @@
 package com.example.a1
 
+import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +15,14 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -31,6 +41,8 @@ private const val ARG_PARAM2 = "param2"
 class CommunityChatFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var messageRecyclerView: RecyclerView
+    lateinit var PhotoLauncher: ActivityResultLauncher<Intent>
+
     private var param1: String? = null
     private var param2: String? = null
 
@@ -52,14 +64,17 @@ class CommunityChatFragment : Fragment() {
         val send = view.findViewById<ImageView>(R.id.sendmsg)
         val message = view.findViewById<EditText>(R.id.chatmessage)
         val opencam=view.findViewById<ImageView>(R.id.opencam)
+        val addphoto = view.findViewById<ImageView>(R.id.addphoto)
         ChatManager.getallchats { chats ->
             ChatManager.chat = chats[0]
         }
         messageRecyclerView=view.findViewById(R.id.messagesrecycler)
 
+
+
         send.setOnClickListener {
             val newmessage = Message(
-                messageId = generateUniqueUserId(),
+                messageId = generateUniqueMessageId(),
                 senderId = DataManager.currentUser!!.userId,
                 message = message.text.toString(),
                 timestamp = getCurrentTimeString()
@@ -70,10 +85,23 @@ class CommunityChatFragment : Fragment() {
 
         }
 
+        addphoto.setOnClickListener {
+
+            checkPermissionAndPickPhoto()
+        }
+
+
+        PhotoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                //upload a photo
+                uploadToFireBase(result.data?.data!!)
+
+            }
+        }
+
         opencam.setOnClickListener {
             val intent = Intent(activity, PhotoCameraScreen::class.java)
             startActivity(intent)
-            activity?.finish()
 
         }
 
@@ -88,10 +116,38 @@ class CommunityChatFragment : Fragment() {
 
         return view
     }
-    fun generateUniqueUserId(): String {
+    fun checkPermissionAndPickPhoto(){
+        var readExternalPhoto : String = ""
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            readExternalPhoto = android.Manifest.permission.READ_MEDIA_IMAGES
+        }else{
+            readExternalPhoto = android.Manifest.permission.READ_EXTERNAL_STORAGE
+        }
+        if(ContextCompat.checkSelfPermission(requireActivity(),readExternalPhoto)== PackageManager.PERMISSION_GRANTED){
+            //we have permission
+            openPhotoPicker()
+        }else{
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(readExternalPhoto),
+                100
+            )
+        }
+    }
+    private fun openPhotoPicker(){
+        var intent = Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        PhotoLauncher.launch(intent)
+    }
+    fun generateUniqueMessageId(): String {
         val currentTimeMillis = System.currentTimeMillis()
         val randomUUID = UUID.randomUUID().toString()
         return "Message-$currentTimeMillis-$randomUUID"
+    }
+    fun generateUniqueImageId(): String {
+        val currentTimeMillis = System.currentTimeMillis()
+        val randomUUID = UUID.randomUUID().toString()
+        return "Image-$currentTimeMillis-$randomUUID"
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -113,11 +169,36 @@ class CommunityChatFragment : Fragment() {
 
 
     }
+    fun uploadToFireBase(photoUri : Uri){
+        val photoRef =  FirebaseStorage.getInstance()
+            .reference
+            .child("chatPic/"+ DataManager.currentUser!!.userId )
+        photoRef.putFile(photoUri)
+            .addOnSuccessListener {
+                photoRef.downloadUrl.addOnSuccessListener {downloadUrl->
+                    //video model store in firebase firestore
+                    postToFirestore(downloadUrl.toString())
+                }
+            }
+
+    }
+    fun postToFirestore(url : String){
+
+        val newmessage = Message(
+            messageId = generateUniqueImageId(),
+            senderId = DataManager.currentUser!!.userId,
+            message = url,
+            timestamp = getCurrentTimeString()
+        )
+        ChatManager.chat!!.messages.add(newmessage)
+        ChatManager.updateChat()
+    }
     private fun loadChats() {
         ChatManager.getallchats { chats ->
             if (isAdded) {
                 activity?.let{
                     messageRecyclerView.adapter = messageAdapter(this.requireContext(),chats[0].messages,it)
+                    messageRecyclerView.scrollToPosition(chats[0].messages.size-1)
                 }
             }
         }
