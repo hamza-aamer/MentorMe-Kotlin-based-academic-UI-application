@@ -7,6 +7,8 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.os.FileObserver
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -42,6 +44,8 @@ class CommunityChatFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var messageRecyclerView: RecyclerView
     lateinit var PhotoLauncher: ActivityResultLauncher<Intent>
+    private val SCREENSHOT_PATH = "${Environment.getExternalStorageDirectory().path}/Pictures/Screenshots"
+    private lateinit var screenshotObserver: FileObserver
 
     private var param1: String? = null
     private var param2: String? = null
@@ -84,6 +88,28 @@ class CommunityChatFragment : Fragment() {
             message.setText("")
 
         }
+        //this should run when a screenshot is taken
+
+
+        screenshotObserver = object : FileObserver(SCREENSHOT_PATH, CREATE) {
+            override fun onEvent(event: Int, path: String?) {
+                if (event == CREATE && path != null) {
+                    Log.d("ScreenshotObserver", "Screenshot detected: $path")
+                    // Handle the screenshot event. You can notify the chat or perform other actions.
+                    val screenshottaken = Message(
+                        messageId = generateUniqueScreenShotId(),
+                        senderId = DataManager.currentUser!!.userId,
+                        message = DataManager.currentUser!!.name + " took a screenshot",
+                        timestamp = getCurrentTimeString()
+                    )
+                    ChatManager.chat!!.messages.add(screenshottaken)
+                    ChatManager.updateChat()
+                }
+            }
+        }
+        screenshotObserver.startWatching()
+
+
 
         addphoto.setOnClickListener {
 
@@ -134,15 +160,26 @@ class CommunityChatFragment : Fragment() {
             )
         }
     }
+
     private fun openPhotoPicker(){
         var intent = Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         PhotoLauncher.launch(intent)
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        screenshotObserver.stopWatching()
+    }
+
     fun generateUniqueMessageId(): String {
         val currentTimeMillis = System.currentTimeMillis()
         val randomUUID = UUID.randomUUID().toString()
         return "Message-$currentTimeMillis-$randomUUID"
+    }
+    fun generateUniqueScreenShotId(): String {
+        val currentTimeMillis = System.currentTimeMillis()
+        val randomUUID = UUID.randomUUID().toString()
+        return "Screenshot-$currentTimeMillis-$randomUUID"
     }
     fun generateUniqueImageId(): String {
         val currentTimeMillis = System.currentTimeMillis()
@@ -158,15 +195,17 @@ class CommunityChatFragment : Fragment() {
         loadChats()
 
 
-        FirestoreReference.db.collection("chats")
-            .addSnapshotListener { value, e ->
-                if (e != null) {
-                    Log.w(ContentValues.TAG, "Listen failed.", e)
-                    return@addSnapshotListener
+        if (!DataManager.chatlisteneron) {
+            FirestoreReference.db.collection("chats")
+                .addSnapshotListener { value, e ->
+                    if (e != null) {
+                        Log.w(ContentValues.TAG, "Listen failed.", e)
+                        return@addSnapshotListener
+                    }
+                    loadChats()
                 }
-                loadChats()
-            }
-
+            DataManager.chatlisteneron=true
+        }
 
     }
     fun uploadToFireBase(photoUri : Uri){
@@ -202,7 +241,6 @@ class CommunityChatFragment : Fragment() {
                 }
             }
         }
-
     }
     fun getCurrentTimeString(): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())

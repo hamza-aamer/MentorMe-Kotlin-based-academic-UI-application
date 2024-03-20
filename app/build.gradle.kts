@@ -54,6 +54,7 @@ dependencies {
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("androidx.camera:camera-view:1.3.2")
     testImplementation ("androidx.test:core-ktx:1.1.0")
+    implementation ("com.akexorcist:screenshot-detection:1.0.2")
 
     implementation("androidx.camera:camera-camera2:1.2.3")
     implementation("androidx.camera:camera-lifecycle:1.2.3")
@@ -66,6 +67,8 @@ dependencies {
     testImplementation("androidx.test.espresso:espresso-intents:3.5.1")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation("com.google.firebase:firebase-messaging:23.4.1")
+    implementation ("com.google.firebase:firebase-analytics:20.1.2")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.7")
     implementation( "androidx.appcompat:appcompat:1.0.0")

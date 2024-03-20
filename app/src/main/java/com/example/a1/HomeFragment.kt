@@ -1,5 +1,6 @@
 package com.example.a1
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,7 +47,34 @@ class HomeFragment : Fragment() {
         val view= inflater.inflate(R.layout.fragment_home, container, false)
 
 
-
+        DataManager.context=requireContext()
+        if(!DataManager.chatNotifListener) {
+            FirestoreReference.db.collection("chats")
+                .addSnapshotListener { value, e ->
+                    if (e != null) {
+                        Log.w(ContentValues.TAG, "Listen failed.", e)
+                        return@addSnapshotListener
+                    }
+                    Log.d(ContentValues.TAG, "Loading Chat")
+                    ChatManager.getallchats { chats ->
+                        Log.d("TAG", "onCreateView: " + chats[0].messages[chats[0].messages.size-1].message)
+                        if (chats[0].messages[chats[0].messages.size-1].senderId != DataManager.currentUser!!.userId) {
+                            Toast.makeText(
+                                DataManager.context,
+                                "You Recieved A Message",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            Log.d("TAG", "onCreateView: " + "You Recieved A Message")
+                            //add condition to check if DataManager.currentUser!!.Notifications already has an entry for this
+                            if (!DataManager.currentUser!!.Notifications.contains("You have new messages in the community chat")){
+                                DataManager.currentUser!!.Notifications.add("You have new messages in the community chat")
+                                DataManager.updateUser(DataManager.currentUser!!)
+                            }
+                        }
+                    }
+                }
+            DataManager.chatNotifListener=true
+        }
         val btn: ImageButton = view.findViewById<ImageButton>(R.id.notifbutton)
         btn.setOnClickListener{
             val intent = Intent(activity, NotificationScreen::class.java)
@@ -78,7 +107,7 @@ class HomeFragment : Fragment() {
     private fun loadMentors() {
         MentorManager.getAllMentors { mentors ->
             if (isAdded) {
-                mentorsRecyclerView.adapter = mentorAdapter(mentors)
+                mentorsRecyclerView.adapter = mentorAdapter(requireContext(),mentors)
             }
         }
     }

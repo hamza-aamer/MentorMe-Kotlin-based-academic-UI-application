@@ -1,4 +1,5 @@
 package com.example.a1
+import android.content.Context
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -22,6 +23,7 @@ data class User(
     val reviewsGiven: ArrayList<Review> = ArrayList(),
     val sessionsBooked: ArrayList<Session> = ArrayList(),
     val lastOnlineTimestamp: Long = System.currentTimeMillis(),
+    var Notifications: ArrayList<String> = ArrayList()
 )
 
 
@@ -154,6 +156,9 @@ object  DataManager {
     private val db: FirebaseFirestore = FirestoreReference.db
     var currentUser: User? = null
     var currentFragment: Fragment = HomeFragment()
+    var context : Context ?= null
+    var chatlisteneron : Boolean =false
+    var chatNotifListener : Boolean = false
     /**
      * Adds a new user to the Firestore database.
      *

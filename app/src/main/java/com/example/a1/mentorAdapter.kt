@@ -1,5 +1,7 @@
 package com.example.a1
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class mentorAdapter(private val mentorList: ArrayList<Mentor>) : RecyclerView.Adapter<mentorAdapter.MentorViewHolder>() {
+class mentorAdapter(private val context: Context, private val mentorList: ArrayList<Mentor>) : RecyclerView.Adapter<mentorAdapter.MentorViewHolder>() {
 
     class MentorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.mentorname)
@@ -29,7 +31,13 @@ class mentorAdapter(private val mentorList: ArrayList<Mentor>) : RecyclerView.Ad
         Glide.with(holder.mentorProfilePic)
             .load(mentor.profileImageUrl)
             .into(holder.mentorProfilePic)
+
+        holder.mentorProfilePic.setOnClickListener {
+            MentorManager.focusedMentor= mentor
+            val intent = Intent(context, UserFocusedScreen::class.java)
+            context.startActivity(intent)
         }
+    }
 
 
 

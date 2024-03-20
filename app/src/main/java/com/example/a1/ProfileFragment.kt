@@ -4,6 +4,7 @@ package com.example.a1
 
 
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -100,6 +101,9 @@ class ProfileFragment : Fragment() {
         logoutbtn.setOnClickListener {
             DataManager.currentUser=null
             DataManager.currentFragment=HomeFragment()
+
+            setText(requireActivity(),"","")
+
             val intent = Intent(activity, LoginScreen::class.java)
             startActivity(intent)
             activity?.finish()
@@ -209,6 +213,13 @@ class ProfileFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+    fun setText(context: Context, mail: String, pass: String) {
+        val sharedPreferences = context.getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("mail", mail)
+        editor.putString("pass", pass)
+        editor.apply() // or editor.commit() for synchronous operation
     }
 
 }

@@ -75,6 +75,8 @@ class AddMentorFragment : Fragment() {
                 profileImageUrl = imageurl
             )
             MentorManager.addMentor(newMentor)
+            DataManager.currentUser!!.Notifications.add("You have added a mentor, Thank you!")
+
             DataManager.currentFragment = HomeFragment()
             val intent = Intent(activity, BottomNavigationBar::class.java)
             startActivity(intent)
@@ -96,6 +98,7 @@ class AddMentorFragment : Fragment() {
         uploadbtn.setOnClickListener {
             checkPermissionAndPickPhoto()
             view.findViewById<TextView>(R.id.photouploadstatus).setText("Photo Uploaded")
+            DataManager.updateUser(DataManager.currentUser!!)
         }
 
         back.setOnClickListener {

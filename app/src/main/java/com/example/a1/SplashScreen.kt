@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.firestore
@@ -26,6 +27,8 @@ class SplashScreen : AppCompatActivity() {
             setLocalCacheSettings(persistentCacheSettings {})
         }
         Firebase.firestore.firestoreSettings=settings
+
+
 
         setContentView(R.layout.activity_splash_screen)
         window.setFlags(

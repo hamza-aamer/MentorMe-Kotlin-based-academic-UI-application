@@ -20,10 +20,13 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
     private val TYPE_OTHER_MESSAGE = 1
     private val TYPE_MY_IMAGE = 2
     private val TYPE_OTHER_IMAGE = 3
+    private val TYPE_SCREENSHOT = 4
 
     override fun getItemViewType(position: Int): Int {
         var chat : Message = items[position] as Message
         var myid = DataManager.currentUser!!.userId
+        if (chat.messageId[0]=='S')
+            return TYPE_SCREENSHOT
         if (chat.senderId == myid) {
             if (chat.messageId[0]=='I')
                 return TYPE_MY_IMAGE
@@ -52,9 +55,13 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
                 val view = inflater.inflate(R.layout.mymessage_image, parent, false)
                 MyImageViewHolder(view)
             }
-            else -> {
+            TYPE_OTHER_IMAGE -> {
                 val view = inflater.inflate(R.layout.othermessage_image, parent, false)
                 OtherImageViewHolder(view)
+            }
+            else -> {
+                val view = inflater.inflate(R.layout.screenshot_item, parent, false)
+                MyTextViewHolder(view)
             }
         }
     }
@@ -122,7 +129,6 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
                 // Assuming `item` has `text`, `time`, and `picture` properties for OtherMessageType
                 Glide.with(holder.txt)
                     .load((item as Message).message)
-                    .circleCrop()
                     .into(holder.txt)
                 holder.time.text = (item as Message).timestamp
                 MentorManager.getAllMentors{it ->
@@ -144,6 +150,9 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
                         }
                     }
                 }
+            }
+            is ScreenshotViewHolder -> {
+                holder.txt.text = (item as Message).message
             }
         }
     }
@@ -189,6 +198,10 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
         val txt: ImageView = itemView.findViewById(R.id.messagermessage)
         val time: TextView = itemView.findViewById(R.id.messagermessagetime)
         val pic: ImageView = itemView.findViewById(R.id.messagerpic)
+    }
+
+    class ScreenshotViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val txt: TextView = itemView.findViewById(R.id.screenshotText)
     }
 
 }

@@ -25,6 +25,7 @@
     <string name="chat">Chat</string>
     <string name="login_title">Login Title</string>
     <string name="login_message">Please enter your credentials</string>
+    <string name="default_notification_channel_id">your_notification_channel_id</string>
 
 
 </resources>

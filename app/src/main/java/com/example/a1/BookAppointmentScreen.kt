@@ -75,6 +75,7 @@ class BookAppointmentScreen : AppCompatActivity() {
 
             MentorManager.focusedMentor!!.sessionsBooked.add(newSession)
             DataManager.currentUser!!.sessionsBooked.add(newSession)
+            DataManager.currentUser!!.Notifications.add("Thank you for booking a session. Good Luck!")
             DataManager.updateUser(DataManager.currentUser!!)
             MentorManager.updateMentor(MentorManager.focusedMentor!!)
             val intent = Intent(this, BottomNavigationBar::class.java)
