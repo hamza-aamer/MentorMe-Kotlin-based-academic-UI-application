@@ -1,9 +1,11 @@
 package com.example.a1
 
+import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +19,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -46,9 +49,12 @@ class CommunityChatFragment : Fragment() {
     lateinit var PhotoLauncher: ActivityResultLauncher<Intent>
     private val SCREENSHOT_PATH = "${Environment.getExternalStorageDirectory().path}/Pictures/Screenshots"
     private lateinit var screenshotObserver: FileObserver
+    private lateinit var mediaRecorder: MediaRecorder
+    private var audioUri: Uri? = null // Placeholder for recording Uri
 
     private var param1: String? = null
     private var param2: String? = null
+    private var recording: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +79,19 @@ class CommunityChatFragment : Fragment() {
             ChatManager.chat = chats[0]
         }
         messageRecyclerView=view.findViewById(R.id.messagesrecycler)
+
+
+        if (requireActivity().packageManager.hasSystemFeature(PackageManager.FEATURE_MICROPHONE)){
+            if (ContextCompat.checkSelfPermission(requireActivity(),Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.RECORD_AUDIO), 200)
+            }
+        }
+
+        val record = view.findViewById<ImageView>(R.id.sendvm)
+        val storageReference = FirebaseStorage.getInstance().reference.child("ChatRecordings")
+
+        initializeRecordingComponents(view)
+
 
 
 
@@ -160,6 +179,88 @@ class CommunityChatFragment : Fragment() {
             )
         }
     }
+    private fun startRecording() {
+        mediaRecorder = MediaRecorder().apply {
+            setAudioSource(MediaRecorder.AudioSource.MIC)
+            setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+            val contentValues = ContentValues().apply {
+                put(MediaStore.MediaColumns.DISPLAY_NAME, "recording_${System.currentTimeMillis()}.3gp")
+                put(MediaStore.MediaColumns.MIME_TYPE, "audio/3gpp")
+                put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_MUSIC + "/Recordings")
+            }
+
+            val uri = requireActivity().contentResolver.insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, contentValues)
+            audioUri = uri // Saving Uri for upload
+
+            setOutputFile(requireActivity().contentResolver.openFileDescriptor(uri!!, "w")?.fileDescriptor)
+            setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+            try {
+                prepare()
+                start()
+                Toast.makeText(activity, "Recording started", Toast.LENGTH_LONG).show()
+            } catch (e: Exception) {
+                Log.e("Recording", "prepare() failed: ${e.message}")
+                Toast.makeText(activity, "Recording failed to start", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun initializeRecordingComponents(view: View) {
+        // Checking and requesting necessary permissions...
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.RECORD_AUDIO), 200)
+        }
+
+        val record = view.findViewById<ImageView>(R.id.sendvm)
+        val storageReference = FirebaseStorage.getInstance().reference.child("ChatRecordings")
+
+        record.setOnClickListener {
+            if (recording) {
+                // Stop recording
+                mediaRecorder.stop()
+                mediaRecorder.release()
+                recording = false
+                Toast.makeText(activity, "Recording stopped", Toast.LENGTH_LONG).show()
+
+                // Create a unique file name
+                val fileName = "recording_${System.currentTimeMillis()}.3gp"
+                val fileRef = storageReference.child(fileName)
+
+                audioUri?.let { uri ->
+                    // Generate unique ID for this voice message
+                    val uniqueVMId = generateUniqueVoiceMessageId()
+
+                    // Upload file to Firebase Storage
+                    val uploadTask = fileRef.putFile(uri)
+                    uploadTask.addOnSuccessListener {
+                        fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                            val downloadUrl = downloadUri.toString()
+                            postVMToFirestore(downloadUrl, uniqueVMId) // Pass the unique VM ID and URL
+                            Toast.makeText(activity, "Recording uploaded successfully", Toast.LENGTH_LONG).show()
+                        }
+                    }.addOnFailureListener { e ->
+                        Log.e("Firebase", "Upload failed: ${e.message}")
+                        Toast.makeText(activity, "Upload failed", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+            } else {
+                // Prepare for recording
+                recording = true
+                startRecording()
+            }
+        }
+    }
+    fun postVMToFirestore(url: String, messageId: String) {
+        val newMessage = Message(
+            messageId = messageId, // Use the unique ID for the voice message
+            senderId = DataManager.currentUser!!.userId,
+            message = url, // This will be the URL of the uploaded voice message
+            timestamp = getCurrentTimeString(),
+        )
+        ChatManager.chat!!.messages.add(newMessage)
+        ChatManager.updateChat()
+    }
 
     private fun openPhotoPicker(){
         var intent = Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
@@ -186,6 +287,12 @@ class CommunityChatFragment : Fragment() {
         val randomUUID = UUID.randomUUID().toString()
         return "Image-$currentTimeMillis-$randomUUID"
     }
+    fun generateUniqueVoiceMessageId(): String {
+        val currentTimeMillis = System.currentTimeMillis()
+        val randomUUID = UUID.randomUUID().toString()
+        return "Recording-$currentTimeMillis-$randomUUID"
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         messageRecyclerView = view.findViewById(R.id.messagesrecycler)

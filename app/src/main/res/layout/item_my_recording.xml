@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/playaudio"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" ▶ "
+        android:textStyle="bold"
+        android:background="@drawable/messageboxgreen"
+        android:textSize="30dp"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:gravity="left"
+
+        />
+    <TextView
+        android:id="@+id/messagetime"
+        app:layout_constraintTop_toBottomOf="@id/playaudio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:layout_marginRight="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@android:color/darker_gray"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

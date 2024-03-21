@@ -3,14 +3,18 @@ package com.example.a1
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.media.AudioAttributes
+import android.media.MediaPlayer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import java.io.IOException
 
 
 class messageAdapter(val context: Context, val items: ArrayList<Message>,val act: Context ) :
@@ -21,28 +25,33 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
     private val TYPE_MY_IMAGE = 2
     private val TYPE_OTHER_IMAGE = 3
     private val TYPE_SCREENSHOT = 4
+    private val TYPE_MY_RECORDING = 5
+    private val TYPE_OTHER_RECORDING = 6
+
 
     override fun getItemViewType(position: Int): Int {
-        var chat : Message = items[position] as Message
-        var myid = DataManager.currentUser!!.userId
-        if (chat.messageId[0]=='S')
-            return TYPE_SCREENSHOT
-        if (chat.senderId == myid) {
-            if (chat.messageId[0]=='I')
-                return TYPE_MY_IMAGE
-            else
-            return TYPE_MY_MESSAGE
-        } else {
-            if (chat.messageId[0]=='I')
-                return TYPE_OTHER_IMAGE
-            else
-            return TYPE_OTHER_MESSAGE
+        val chat: Message = items[position]
+        val myId = DataManager.currentUser!!.userId
+        return when {
+            chat.messageId.startsWith("S") -> TYPE_SCREENSHOT
+            chat.messageId.startsWith("I") -> if (chat.senderId == myId) TYPE_MY_IMAGE else TYPE_OTHER_IMAGE
+            chat.messageId.startsWith("R") -> if (chat.senderId == myId) TYPE_MY_RECORDING else TYPE_OTHER_RECORDING
+            else -> if (chat.senderId == myId) TYPE_MY_MESSAGE else TYPE_OTHER_MESSAGE
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
         return when (viewType) {
+            TYPE_MY_RECORDING -> {
+                val view = inflater.inflate(R.layout.item_my_recording, parent, false)
+                MyRecordingViewHolder(view)
+            }
+            TYPE_OTHER_RECORDING -> {
+                val view = inflater.inflate(R.layout.item_other_recording, parent, false)
+                OtherRecordingViewHolder(view)
+            }
             TYPE_MY_MESSAGE -> {
                 val view = inflater.inflate(R.layout.mymessage_item, parent, false)
                 MyTextViewHolder(view)
@@ -69,6 +78,40 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
         when (holder) {
+            is MyRecordingViewHolder -> {
+                holder.playButton.setOnClickListener {
+                    Toast.makeText(context, "Playing audio", Toast.LENGTH_SHORT).show()
+                    playAudioFromUrl(item.message, context)
+
+                }
+                holder.time.text = item.timestamp
+            }
+            is OtherRecordingViewHolder -> {
+                holder.playButton.setOnClickListener {
+                    Toast.makeText(context, "Playing audio", Toast.LENGTH_SHORT).show()
+                    playAudioFromUrl(item.message, context)
+                }
+                holder.time.text = item.timestamp
+                MentorManager.getAllMentors{it ->
+                    for (mentor in it){
+                        if(mentor.mentorId == (item as Message).senderId){
+                            Glide.with(holder.profilePic)
+                                .load(mentor.profileImageUrl)
+                                .circleCrop()
+                                .into(holder.profilePic)
+                        }
+                    }
+                }
+                DataManager.getAllUsers { it ->
+                    for (user in it) {
+                        if (user.userId == (item as Message).senderId) {
+                            Glide.with(holder.profilePic)
+                                .load(user.profileImageUrl)
+                                .circleCrop()
+                                .into(holder.profilePic)
+                        }
+                    }
+                }            }
             is MyTextViewHolder -> {
                 // Assuming `item` has `text` and `time` properties for MyMessageType
                 holder.txt.text = (item as Message).message
@@ -156,6 +199,52 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
             }
         }
     }
+    fun playAudioFromUrl(url: String, context: Context) {
+        try {
+            // Initialize MediaPlayer
+            val mediaPlayer = MediaPlayer().apply {
+                setAudioAttributes(
+                    AudioAttributes.Builder()
+                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                        .setUsage(AudioAttributes.USAGE_MEDIA)
+                        .build()
+                )
+                setDataSource(url)
+                prepareAsync() // Prepare the player asynchronously
+            }
+
+            mediaPlayer.setOnPreparedListener { mp ->
+                mp.start()
+            }
+
+            mediaPlayer.setOnCompletionListener { mp ->
+                mp.release()
+            }
+
+            mediaPlayer.setOnErrorListener { mp, what, extra ->
+                Toast.makeText(context, "Error playing audio", Toast.LENGTH_SHORT).show()
+                mp.release()
+                true
+            }
+        } catch (e: IOException) {
+            Toast.makeText(context, "Error setting data source", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    class MyRecordingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val playButton: TextView = itemView.findViewById(R.id.playaudio)
+        val time: TextView = itemView.findViewById(R.id.messagetime)
+        // Add onClickListener for playButton here to handle playback
+    }
+
+    class OtherRecordingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val playButton: TextView = itemView.findViewById(R.id.messagerrecording)
+        val time: TextView = itemView.findViewById(R.id.messagermessagetime)
+        val profilePic: ImageView = itemView.findViewById(R.id.messagerpic)
+        // Add onClickListener for playButton here to handle playback
+    }
+
 
 
     fun removeMessageById(messages: ArrayList<Message>, messageId: String): ArrayList<Message> {
