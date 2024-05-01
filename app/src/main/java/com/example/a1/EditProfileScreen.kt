@@ -65,7 +65,8 @@ class EditProfileScreen : AppCompatActivity() {
 
             DataManager.currentUser?.location = "$city, $country"
 
-            DataManager.updateUser(DataManager.currentUser!!)
+            DataManager.updateUser(this,DataManager.currentUser!!)
+            //DataManager.sendUpdatedUser(this, DataManager.currentUser!!)
 
             DataManager.currentFragment=ProfileFragment()
 
@@ -73,9 +74,6 @@ class EditProfileScreen : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-
-
 
     }
 }

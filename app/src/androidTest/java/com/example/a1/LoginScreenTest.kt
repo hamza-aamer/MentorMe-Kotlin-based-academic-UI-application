@@ -37,10 +37,24 @@ class LoginScreenTest {
         intended(hasComponent(ForgotPassScreen::class.java.name))
     }
     @Test
-    fun loginButton_redirectsToBottomNavigationBar() {
-        onView(withId(R.id.loginbtn)).perform(click())
-        intended(hasComponent(BottomNavigationBar::class.java.name))
+    fun Forgotpass_redirectsToForgotPassScreenAndBack() {
+        onView(withId(R.id.forgotPassword)).perform(click())
+        onView(withId(R.id.LoginRedirect)).perform(click())
+        intended(hasComponent(LoginScreen::class.java.name))
     }
+
+    @Test
+    fun Register_redirectsToRegisterScreen() {
+        onView(withId(R.id.RegisterRedirect)).perform(click())
+        intended(hasComponent(RegisterScreen::class.java.name))
+    }
+    @Test
+    fun Register_redirectsToRegisterScreenAndBack() {
+        onView(withId(R.id.RegisterRedirect)).perform(click())
+        onView(withId(R.id.loginredirect)).perform(click())
+        intended(hasComponent(LoginScreen::class.java.name))
+    }
+
 
 
 }

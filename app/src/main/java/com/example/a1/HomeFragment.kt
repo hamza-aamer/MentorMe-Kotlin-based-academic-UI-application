@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
                             //add condition to check if DataManager.currentUser!!.Notifications already has an entry for this
                             if (!DataManager.currentUser!!.Notifications.contains("You have new messages in the community chat")){
                                 DataManager.currentUser!!.Notifications.add("You have new messages in the community chat")
-                                DataManager.updateUser(DataManager.currentUser!!)
+                                DataManager.updateUser(DataManager.context!!,DataManager.currentUser!!)
                             }
                         }
                     }

@@ -19,7 +19,7 @@ class NotificationScreen : AppCompatActivity() {
         val clear : TextView = findViewById<TextView>(R.id.clearnotifs)
         clear.setOnClickListener{
             DataManager.currentUser!!.Notifications.clear()
-            DataManager.updateUser(DataManager.currentUser!!)
+            DataManager.updateUser(this,DataManager.currentUser!!)
             val intent = Intent(this, NotificationScreen::class.java)
             startActivity(intent)
             finish()
@@ -33,5 +33,7 @@ class NotificationScreen : AppCompatActivity() {
             finish()
         }
     }
-
 }
+
+
+

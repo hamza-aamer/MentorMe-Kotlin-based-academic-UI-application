@@ -98,7 +98,7 @@ class AddMentorFragment : Fragment() {
         uploadbtn.setOnClickListener {
             checkPermissionAndPickPhoto()
             view.findViewById<TextView>(R.id.photouploadstatus).setText("Photo Uploaded")
-            DataManager.updateUser(DataManager.currentUser!!)
+            DataManager.updateUser(requireActivity(),DataManager.currentUser!!)
         }
 
         back.setOnClickListener {

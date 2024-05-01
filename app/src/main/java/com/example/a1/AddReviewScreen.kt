@@ -31,10 +31,12 @@ class AddReviewScreen : AppCompatActivity() {
             DataManager.currentUser!!.reviewsGiven.add(newreview)
             MentorManager.focusedMentor!!.reviewsReceived.add(newreview)
             MentorManager.updateMentor(MentorManager.focusedMentor!!)
-            DataManager.updateUser(DataManager.currentUser!!)
+            DataManager.updateUser(this,DataManager.currentUser!!)
             val intent = Intent(this,UserFocusedScreen::class.java)
             startActivity(intent)
             finish()
         }
+
     }
+
 }

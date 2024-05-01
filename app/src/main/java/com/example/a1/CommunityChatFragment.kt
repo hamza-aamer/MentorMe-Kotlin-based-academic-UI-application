@@ -2,15 +2,19 @@ package com.example.a1
 
 import android.Manifest
 import android.app.Activity
+import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.ContentObserver
 import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.FileObserver
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -55,7 +59,24 @@ class CommunityChatFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var recording: Boolean = false
-
+    private var prevMessages: ArrayList<Message> = ArrayList()
+    private val SCREENSHOT_NOTIFICATION_DELAY = 2000
+    private fun isScreenshot(uri: Uri): Boolean {
+        val contentResolver: ContentResolver = requireActivity().contentResolver
+        val cursor = contentResolver.query(
+            uri, arrayOf(MediaStore.Images.Media.DISPLAY_NAME),
+            null, null, null
+        )
+        cursor?.use {
+            while (it.moveToNext()) {
+                val fileName = it.getString(it.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME))
+                if (fileName.contains("screenshot", ignoreCase = true)) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -75,8 +96,11 @@ class CommunityChatFragment : Fragment() {
         val message = view.findViewById<EditText>(R.id.chatmessage)
         val opencam=view.findViewById<ImageView>(R.id.opencam)
         val addphoto = view.findViewById<ImageView>(R.id.addphoto)
-        ChatManager.getallchats { chats ->
-            ChatManager.chat = chats[0]
+        //ChatManager.getallchats { chats ->
+        //    ChatManager.chat = chats[0]
+        //}
+        ChatManager.getAllMessages(DataManager.context!!){messages ->
+            ChatManager.chat=Chat("GlobalChat",messages!!)
         }
         messageRecyclerView=view.findViewById(R.id.messagesrecycler)
 
@@ -106,10 +130,22 @@ class CommunityChatFragment : Fragment() {
             ChatManager.updateChat()
             message.setText("")
 
+
         }
-        //this should run when a screenshot is taken
+        val handler = Handler(Looper.getMainLooper())
+        val runnable = object : Runnable {
+            override fun run() {
+                ChatManager.getAllMessages(DataManager.context!!){messages ->
+                    if (prevMessages!=messages){
+                        loadChats()
+                        prevMessages=ChatManager.chat!!.messages
+                    }
+                }
 
-
+                handler.postDelayed(this, 3000) // 2000 milliseconds = 2 seconds
+            }
+        }
+        handler.postDelayed(runnable, 3000)
         screenshotObserver = object : FileObserver(SCREENSHOT_PATH, CREATE) {
             override fun onEvent(event: Int, path: String?) {
                 if (event == CREATE && path != null) {
@@ -127,6 +163,29 @@ class CommunityChatFragment : Fragment() {
             }
         }
         screenshotObserver.startWatching()
+//        screenshotObserver= object : ContentObserver(Handler()) {
+//            override fun onChange(selfChange: Boolean, uri: Uri?) {
+//                super.onChange(selfChange, uri)
+//                uri?.let { screenshotUri ->
+//                    // Check if the screenshot is taken
+//                    if (isScreenshot(screenshotUri)) {
+//                        // Delay sending the notification to allow the screenshot to be saved
+//                        Handler().postDelayed({
+//                            val screenshottaken = Message(
+//                                messageId = generateUniqueScreenShotId(),
+//                                senderId = DataManager.currentUser!!.userId,
+//                                message = DataManager.currentUser!!.name + " took a screenshot",
+//                                timestamp = getCurrentTimeString()
+//                            )
+//                            ChatManager.chat!!.messages.add(screenshottaken)
+//                            ChatManager.updateChat()
+//                            Log.d("ScreenshotObserver", "Screenshot detected: $screenshotUri")
+//                        }, SCREENSHOT_NOTIFICATION_DELAY.toLong())
+//                    }
+//                }
+//            }
+//        }
+
 
 
 
@@ -326,7 +385,6 @@ class CommunityChatFragment : Fragment() {
                     postToFirestore(downloadUrl.toString())
                 }
             }
-
     }
     fun postToFirestore(url : String){
 
@@ -340,11 +398,21 @@ class CommunityChatFragment : Fragment() {
         ChatManager.updateChat()
     }
     private fun loadChats() {
-        ChatManager.getallchats { chats ->
+//        ChatManager.getallchats { chats ->
+//            if (isAdded) {
+//                activity?.let{
+//                    messageRecyclerView.adapter = messageAdapter(this.requireContext(),chats[0].messages,it)
+//                    messageRecyclerView.scrollToPosition(chats[0].messages.size-1)
+//                }
+//            }
+//        }
+        ChatManager.getAllMessages(DataManager.context!!){messages ->
+            ChatManager.chat=Chat("GlobalChat",messages!!)
             if (isAdded) {
-                activity?.let{
-                    messageRecyclerView.adapter = messageAdapter(this.requireContext(),chats[0].messages,it)
-                    messageRecyclerView.scrollToPosition(chats[0].messages.size-1)
+                activity?.let {
+                    messageRecyclerView.adapter =
+                        messageAdapter(this.requireContext(), ChatManager.chat!!.messages, it)
+                    messageRecyclerView.scrollToPosition(ChatManager.chat!!.messages.size - 1)
                 }
             }
         }

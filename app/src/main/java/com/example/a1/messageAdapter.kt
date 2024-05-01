@@ -38,6 +38,7 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
             chat.messageId.startsWith("R") -> if (chat.senderId == myId) TYPE_MY_RECORDING else TYPE_OTHER_RECORDING
             else -> if (chat.senderId == myId) TYPE_MY_MESSAGE else TYPE_OTHER_MESSAGE
         }
+
     }
 
 
@@ -70,7 +71,7 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
             }
             else -> {
                 val view = inflater.inflate(R.layout.screenshot_item, parent, false)
-                MyTextViewHolder(view)
+                ScreenshotViewHolder(view)
             }
         }
     }
@@ -84,6 +85,12 @@ class messageAdapter(val context: Context, val items: ArrayList<Message>,val act
                     playAudioFromUrl(item.message, context)
 
                 }
+                holder.playButton.setOnLongClickListener{
+                    ChatManager.chat!!.messages=removeMessageById(ChatManager.chat!!.messages,(item as Message).messageId)
+                    ChatManager.updateChat()
+                    true
+                }
+
                 holder.time.text = item.timestamp
             }
             is OtherRecordingViewHolder -> {

@@ -45,7 +45,7 @@ class NotificationAdapter(private val context: Context, private var notifList: A
             DataManager.currentUser?.Notifications = notifList
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, notifList.size)
-            DataManager.updateUser(DataManager.currentUser!!)
+            DataManager.updateUser(context,DataManager.currentUser!!)
         }
     }
 }

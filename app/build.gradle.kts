@@ -63,12 +63,13 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth:21.0.1") // Use the latest version available
     implementation ("com.google.firebase:firebase-firestore:24.0.1")
     testImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
+    implementation ("com.android.volley:volley:1.2.1")
     testImplementation("androidx.test.espresso:espresso-intents:3.5.1")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     implementation("com.google.firebase:firebase-messaging:23.4.1")
     implementation ("com.google.firebase:firebase-analytics:20.1.2")
+    implementation ("com.google.code.gson:gson:2.8.6")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.7")
     implementation( "androidx.appcompat:appcompat:1.0.0")

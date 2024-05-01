@@ -70,6 +70,7 @@ class RegisterScreen : AppCompatActivity() {
             )
 
             DataManager.addUser(newUser)
+            DataManager.sendUserSQL(this, newUser)
             findViewById<EditText>(R.id.EmailText).setText("")
             findViewById<EditText>(R.id.PasswordText).setText("")
             findViewById<EditText>(R.id.NameText).setText("")
@@ -97,5 +98,9 @@ class RegisterScreen : AppCompatActivity() {
         val randomUUID = UUID.randomUUID().toString()
         return "$currentTimeMillis-$randomUUID"
     }
+
+
+
+
 
 }
